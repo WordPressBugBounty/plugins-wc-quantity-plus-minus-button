@@ -4,7 +4,7 @@ Contributors: codersaiful, codeastrology, mdibrahimk48, unikforce, fazlebari
 Tags: woocommerce quantity, plus minus button, quantity, qty button
 Requires at least: 4.0.0
 Tested up to: 6.5.5
-Stable tag: 1.2.2
+Stable tag: 1.2.3
 Requires PHP: 5.4
 License: GPL3+
 License URI: http://www.gnu.org/licenses/gpl.html
@@ -41,24 +41,31 @@ Easily add plus, minus button for WooCommerce Quantity Input box in everywhere. 
 
 
 Enable Ajax add to cart for Single Product Page.
+
 `add_filter('wqpmn_ajax_cart_single_page', '__return_true' );`
 
 On off checkbox in admin page using filter
+
 `add_filter('wqpmb_checkbox_row_validation', '__return_true' );`
 
 CSS validation using filter
+
 `add_filter('wqpmb_css_row_validation', '__return_true' );`
 
 Use default WooCommerce template
+
 `add_filter('wqpmb_show_validation', '__return_true');`
 
 Hide on product page
+
 `add_filter('wqpmb_on_product_page', '__return_false');`
 
 Hide on cart page
+
 `add_filter('wqpmb_on_cart_page', '__return_false');`
 
 Hide on Mini Cart page
+
 `add_filter('wqpmb_on_mini_cart_page', '__return_false');`
 
 To Change Templae Base Directory, Use following Hook
@@ -146,6 +153,10 @@ That's it. So easy, Right !!!
 10. Quantity button in WooCommerce cart page
 
 == Change log ==
+
+= 1.2.3 =
+* Fixed: Cart update on change qty for cart page has been fixed.
+* Bug fixed.
 
 = 1.2.2 =
 * Fixed: Ajax add to cart for shop/category/Taxonomy page issue fixed.
