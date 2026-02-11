@@ -11,7 +11,9 @@
     $(document).ready(function () {
         
         $(document.body).on('click', '.single_add_to_cart_button', function (e) {
-
+            if(typeof wc_add_to_cart_params === 'undefined'){
+                return;
+            }
             /**
              * Actually if .disabled class found 
              * or .wc-variation-selection-needed class found

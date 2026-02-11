@@ -1,5 +1,5 @@
 <?php
-$min_max_img = $this->base_url . 'assets/images/plus-minus-small.png';
+$min_max_img = $this->assets_url . 'images/plus-minus-small.png';
 
 /**
  * This following part actually
@@ -31,27 +31,20 @@ if( isset( $this->topbar_sub_title ) && ! empty( $this->topbar_sub_title ) ){
         </div>
         <div class="col-lg-5">
             <div class="header-button-wrapper">
-                <?php if( ! $this->is_pro){ ?>
-                    <a class="wqpmb-button reverse" 
-                        href="https://codeastrology.com/" 
+                <?php if( ! $this->is_premium){ ?>
+                    <a class="wqpmb-btn wqpmb-has-icon wqpmb-checkout-button" 
+                        href="<?php echo esc_url( wqpmb_fs()->checkout_url() ) ?>" 
                         target="_blank">
-                        <i class="wqpmb_icon-heart-filled"></i>
-                        Get Premium Offer
-                    </a>
-                <?php }else{ ?>
-                    <a class="wqpmb-btn wqpmb-has-icon" 
-
-                        href="https://codeastrology.com/downloads/">
-                        <span><i class=" wqpmb_icon-heart-1"></i></span>
-                        Browse Plugin
+                        <span class="wqpmb_icon-bag"></span>
+                        Checkout
                     </a>
                 <?php } ?>
-                
-                <a class="wqpmb-button reset" 
-                    href="https://demo.wooproducttable.com/product/couple-jewelry/" 
-                    target="_blank">
-                    <i class="wqpmb_icon-note"></i>Demo
-                </a>
+                    <a class="wqpmb-btn wqpmb-has-icon" 
+
+                        href="https://customers.freemius.com/store/9916/websites" target="_blank">
+                        <span><i class="wqpmb_icon-user"></i></span>
+                        Store Login
+                    </a>
             </div>
         </div>
     </div>

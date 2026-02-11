@@ -58,14 +58,18 @@ $our_data = $this->data;
             <?php
             //It's old action hook
             do_action( 'wqpmb_form_panel', $our_data, $datas );
+            ?>
+            <div class="wqpmb-section-panel custom-css-settings" id="wqpmb-custom-css-settings">
+                <?php 
+                include 'custom-css-settings.php';
+                ?>
+            </div><!-- /#wqpmb-custom-css-settings -->
+            <?php
+            
 
             //New action hook for form
             do_action( 'wqpmb_form_bottom', $our_data, $datas );
             ?>
-
-            <div class="wqpmb-section-panel live-support" id="wqpmb-live-support-area">
-                <?php include 'live-support.php'; ?>
-            </div>
             <div class="wqpmb-section-panel no-background wqpmb-full-form-submit-wrapper">
                 
                 <button name="configure_submit" type="submit"
@@ -85,45 +89,10 @@ $our_data = $this->data;
             </div>
 
         </form>
-        <div class="wqpmb-section-panel wqpmb-bottom-area wqpmb-recomendation-area" id="wqpmb-recomendation-area">
-            <table class="wqpmb-table universal-setting">
-                <thead>
-                    <tr>
-                        <th class="wqpmb-inside">
-                            <div class="wqpmb-table-header-inside">
-                                <h3><?php echo esc_html__('Recommendation Area', 'wc-quantity-plus-minus-button'); ?> <small class="wqpmb-small-title">To increase Sale</small></h3>
-                            </div>
-
-                        </th>
-                        <th>
-                            <div class="wqpmb-table-header-right-side"></div>
-                        </th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                <tr>
-                    <td>
-                        <div class="wqpmb-form-control">
-                            <div class="form-label col-lg-12">
-                            <?php do_action( 'wqpmb_plugin_recommend_here' ); ?>
-                            </div>
-                            <div class="form-label col-lg-12">
-                                <?php wqpmb_submit_issue_link(); ?>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="wqpmb-form-info">
-                            
-                            <?php wqpmb_social_links(); ?>
-                            <p>Highly Recommeded these plugin. Which will help you to increase your WooCommerce sale.</p>
-                        </div> 
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-
-        </div> <!--/.wqpmb-recomendation-area -->
+        <?php
+        //It's old action hook
+        do_action( 'wqpmb_bottom_panel', $our_data, $datas );
+        ?>
+        
     </div><!-- ./fieldwrap -->
 </div> <!-- ./wrap wqpmb_wrap wqpmb-content -->

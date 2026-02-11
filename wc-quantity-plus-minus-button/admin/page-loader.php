@@ -2,6 +2,8 @@
 namespace WQPMB\Admin;
 
 use WQPMB\Core\Base;
+use WQPMB\Admin\Premium_Placeholder as Placeholder;
+// use WQPMB\Admin\Freemius_Customizer as Freemius_Customizer;
 
 class Page_Loader extends Base
 {
@@ -10,6 +12,9 @@ class Page_Loader extends Base
     public $option_key;
     public $data;
     public $is_pro = true;
+
+    //for freemius version
+    public $is_premium = false;
 
     /**
      * Right slash already set
@@ -22,6 +27,7 @@ class Page_Loader extends Base
 
     public function __construct()
     {
+        $this->is_premium = wqpmb_fs()->is_premium();
         /**
          * No need to call construct
          * actually I assign again option_key and data
@@ -36,6 +42,14 @@ class Page_Loader extends Base
         $this->html_folder_dir = $this->base_dir . '/admin/html/';
         $this->topbar_file_dir = $this->base_dir . '/admin/html/topbar.php';
 
+        //Initialize Premium Placeholder
+        $placeholder = new Placeholder();   
+        $placeholder->run();
+
+        // if( ! $this->is_premium ){
+        //     new Freemius_Customizer();
+            
+        // }
     }
 
     public function run()
@@ -44,19 +58,15 @@ class Page_Loader extends Base
         add_action( 'admin_menu', [$this, 'admin_menu'] );
         add_action( 'admin_enqueue_scripts', [$this, 'admin_enqueue_scripts'] );
 
-
-        if( class_exists( '\WQPMB\Admin\Appseros\Src\Client' ) ) {
-            $client = new \WQPMB\Admin\Appseros\Src\Client( 'b39316df-e8df-44aa-be77-277dac809411', 'Quantity Plus Minus Button', WQPMB_MAIN_FILE );
-            $client->insights()->init();
-        }
-
     }
 
 
 
     public function admin_menu()
     {
+        $icon = $this->assets_url . 'images/menu-icon.png';
         $capability = apply_filters( 'wqpmb_menu_capability', 'manage_woocommerce' );
+        add_menu_page(WQPMB_NAME, WQPMB_MENU_NAME, $capability, $this->slug, [$this,'page_html'], $icon, 56 );
         add_submenu_page($this->parent_slug, WQPMB_NAME, WQPMB_MENU_NAME, $capability, $this->slug, [$this,'page_html']);
     }
     public function page_html()

@@ -5,15 +5,23 @@
  * @author Fazle Bari <fazlebarisn@gmail.com>
  */
 if( ! function_exists('dd') ){
-	function dd( ...$vals){
-		if( ! empty($vals) && is_array($vals) ){
-			foreach($vals as $val ){
-				echo "<pre>";
-				var_dump($val);
-				echo "</pre>";
-			}
-		}
-	}
+	function dd(...$vals) {
+        $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1)[0];
+        $file = $backtrace['file'] ?? 'Unknown file';
+        $line = $backtrace['line'] ?? 'Unknown line';
+        echo '<div style="background: #e1e1e1;border-left: 3px solid #888;padding: 15px;margin: 15px 0;font-family: monospace;border-radius: 6px;overflow-x: auto;">';
+        echo '<div style="margin-bottom: 10px;color: #3F51B5;">';
+        echo "🛠️ <strong>File:</strong> <span style='color:#8d8d8d;'>$file</span> on line <span style='color:#4b4b4b;'>$line</span>";
+        echo '</div>';
+        foreach ($vals as $val) {
+            ob_start();
+            var_dump($val);
+            $output = ob_get_clean();
+            // HTML entities
+            echo '<pre style="color: #777777;background: #ffffff9c;">' . htmlspecialchars($output) . '</pre>';
+        }
+        echo '</div>';
+   }
 }
 
 if( !function_exists( 'wqpmb_locate_template' ) ){
@@ -237,10 +245,9 @@ if( !function_exists( 'wqpmb_button_off_in_minicart' ) ){
 
 if( !function_exists( 'wqpmb_header_css' ) ){
     /**
-     * set class for Admin Body tag
+     * Output CSS in the header
      * 
-     * @param type $classes
-     * @return String
+     * @return void
      */
     function wqpmb_header_css(){
         $style = false;
@@ -249,6 +256,17 @@ if( !function_exists( 'wqpmb_header_css' ) ){
         if( !empty( $css ) && is_string( $css ) ){
             $style .= "<style type='text/css' id='wqpmb_internal_css'>";
             $style .= $css;
+            $style .= "</style>";
+        }
+        
+        // Add custom CSS
+        $option_key = WQPMB_Button::$option['option'];
+        $options = get_option( $option_key );
+        $custom_css = isset( $options['custom_css'] ) ? $options['custom_css'] : '';
+        
+        if( !empty( $custom_css ) ){
+            $style .= "<style type='text/css' id='wqpmb_custom_css'>";
+            $style .= wp_strip_all_tags( $custom_css );
             $style .= "</style>";
         }
         

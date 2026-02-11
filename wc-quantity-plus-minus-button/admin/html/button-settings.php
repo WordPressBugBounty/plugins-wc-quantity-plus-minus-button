@@ -47,7 +47,7 @@
             <td>
                 <div class="wqpmb-form-control">
                     <div class="form-label col-lg-6">
-                        <label for="wqpmb-enable-quantity-archive">Quantiy box in Archive</label>
+                        <label for="wqpmb-enable-quantity-archive">Quantity box in Archive</label>
                     </div>
                     <div class="form-field col-lg-6">
                     <?php

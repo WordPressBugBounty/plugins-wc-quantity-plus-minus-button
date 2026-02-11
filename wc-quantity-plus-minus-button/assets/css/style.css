@@ -6,7 +6,7 @@
     cursor: pointer;
     font-size: 20px;
     line-height: 20px;
-    width: 41px;
+    min-width: 41px;
     color: black;
     height: 41px;
 }
