@@ -8,7 +8,7 @@ class Premium_Placeholder extends Base
 
     public function __construct()
     {
-        $this->is_premium = wqpmb_fs()->can_use_premium_code__premium_only();
+        $this->is_premium = wqpmb_is_premium();
     }
 
     public function run()
@@ -80,7 +80,7 @@ class Premium_Placeholder extends Base
             </div>
             
             <div class="wqpmb-premium-cta">
-                <a href="<?php echo esc_url( wqpmb_fs()->get_upgrade_url() ); ?>" class="wqpmb-premium-button">
+                <a href="https://codeastrology.com/downloads/" class="wqpmb-premium-button">
                     <span class="wqpmb_icon-basket-1"></span>
                     <?php echo esc_html__( 'Upgrade to Premium', 'wc-quantity-plus-minus-button' ); ?>
                 </a>

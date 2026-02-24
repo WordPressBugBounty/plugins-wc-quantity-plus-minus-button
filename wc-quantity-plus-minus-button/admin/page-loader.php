@@ -3,7 +3,6 @@ namespace WQPMB\Admin;
 
 use WQPMB\Core\Base;
 use WQPMB\Admin\Premium_Placeholder as Placeholder;
-// use WQPMB\Admin\Freemius_Customizer as Freemius_Customizer;
 
 class Page_Loader extends Base
 {
@@ -27,7 +26,7 @@ class Page_Loader extends Base
 
     public function __construct()
     {
-        $this->is_premium = wqpmb_fs()->is_premium();
+        $this->is_premium = wqpmb_is_premium();
         /**
          * No need to call construct
          * actually I assign again option_key and data
@@ -46,10 +45,6 @@ class Page_Loader extends Base
         $placeholder = new Placeholder();   
         $placeholder->run();
 
-        // if( ! $this->is_premium ){
-        //     new Freemius_Customizer();
-            
-        // }
     }
 
     public function run()
@@ -96,7 +91,7 @@ class Page_Loader extends Base
                 );
             wp_localize_script( $this->plugin_prefix . '-admin-script', 'WQPMB_ADMIN_DATA', $WQPMB_ADMIN_DATA );
             
-
+            $this->live_chat_script();
             add_filter('admin_footer_text',[$this, 'admin_footer_text']);
             
             wp_register_style( $this->plugin_prefix . '-icon-font', $this->base_url . 'assets/fontello/css/wqpmb-icon.css', false, $this->dev_version );
@@ -120,6 +115,35 @@ class Page_Loader extends Base
 
     }
 
+    /**
+     * Adding live chat script in admin footer
+     *
+     * @return void
+     */
+    protected function live_chat_script()
+    {
+        /**
+         * how to disable live chat
+         * add_filter('wpt_live_chat_bool','__return_false');
+         */
+        $live_chat_bool = apply_filters( 'wpt_live_chat_bool', true );
+        if( ! $live_chat_bool ) return;
+        ?>
+        <!--Start of Tawk.to Script-->
+        <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/628f5d4f7b967b1179915ad7/1g4009033';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+        })();
+        </script>
+        <!--End of Tawk.to Script-->
+        <?php
+    }
     public function admin_footer_text($text)
     {
         $rev_link = 'https://wordpress.org/support/plugin/wc-quantity-plus-minus-button/reviews/#new-post';

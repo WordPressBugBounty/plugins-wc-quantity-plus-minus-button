@@ -24,6 +24,39 @@ if( ! function_exists('dd') ){
    }
 }
 
+
+if( ! function_exists( 'wqpmb_fs' ) ){
+    function wqpmb_fs(){
+        return new class {
+                public function __call($name, $arguments)
+                {
+                    return null;
+                }
+
+            };
+    }
+}
+
+/**
+ * Check is premium version active or not
+ * 
+ * even old pro version(WC_Min_Max_Quantity) is active then also return true
+ *
+ * @return boolean
+ */
+function wqpmb_is_premium(){
+    return defined('WQPMB_PRO_ADDON_VERSION');
+}
+/**
+ * Check is premium version installed or not
+ *
+ * @return boolean
+ */
+function wqpmb_is_premium_installed(){
+    return wqpmb_is_premium();
+}
+
+
 if( !function_exists( 'wqpmb_locate_template' ) ){
     /**
      * Template selection for Quantity Button

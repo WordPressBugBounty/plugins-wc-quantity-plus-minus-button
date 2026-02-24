@@ -33,18 +33,13 @@ if( isset( $this->topbar_sub_title ) && ! empty( $this->topbar_sub_title ) ){
             <div class="header-button-wrapper">
                 <?php if( ! $this->is_premium){ ?>
                     <a class="wqpmb-btn wqpmb-has-icon wqpmb-checkout-button" 
-                        href="<?php echo esc_url( wqpmb_fs()->checkout_url() ) ?>" 
+                        href="https://codeastrology.com/downloads/category/premium/" 
                         target="_blank">
                         <span class="wqpmb_icon-bag"></span>
-                        Checkout
+                        Products
                     </a>
                 <?php } ?>
-                    <a class="wqpmb-btn wqpmb-has-icon" 
 
-                        href="https://customers.freemius.com/store/9916/websites" target="_blank">
-                        <span><i class="wqpmb_icon-user"></i></span>
-                        Store Login
-                    </a>
             </div>
         </div>
     </div>
