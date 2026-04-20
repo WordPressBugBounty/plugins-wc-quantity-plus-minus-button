@@ -17,7 +17,7 @@ class Premium_Placeholder extends Base
         //Actually if premium enabled, then it will not called/Execute
         if( $this->is_premium ) return;
         //Add action hook for premium placeholder
-        add_action( 'wqpmb_bottom_panel', array( $this, 'premium_form_placeholder' ), 10, 2 );
+        // add_action( 'wqpmb_bottom_panel', array( $this, 'premium_form_placeholder' ), 10, 2 );
     }
 
     public function premium_form_placeholder( $our_data, $datas )

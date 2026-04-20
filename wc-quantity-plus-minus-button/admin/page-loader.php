@@ -3,6 +3,7 @@ namespace WQPMB\Admin;
 
 use WQPMB\Core\Base;
 use WQPMB\Admin\Premium_Placeholder as Placeholder;
+use WQPMB\Admin\Adm_Inc\Notice_Framework;
 
 class Page_Loader extends Base
 {
@@ -11,6 +12,7 @@ class Page_Loader extends Base
     public $option_key;
     public $data;
     public $is_pro = true;
+    public $notice_framework;
 
     //for freemius version
     public $is_premium = false;
@@ -41,6 +43,9 @@ class Page_Loader extends Base
         $this->html_folder_dir = $this->base_dir . '/admin/html/';
         $this->topbar_file_dir = $this->base_dir . '/admin/html/topbar.php';
 
+        
+        add_action( 'admin_init', [ $this, 'init_notice_framework' ] );
+
         //Initialize Premium Placeholder
         $placeholder = new Placeholder();   
         $placeholder->run();
@@ -54,6 +59,28 @@ class Page_Loader extends Base
         add_action( 'admin_enqueue_scripts', [$this, 'admin_enqueue_scripts'] );
 
     }
+
+    /**
+     * Initialize Notice Framework offers.
+     * Hooked to admin_init to ensure WP functions like wp_rand() are available.
+     *
+     * @return void
+     */
+    public function init_notice_framework()
+    {
+        //Initialize Notice Framework
+        $this->notice_framework = new Notice_Framework();
+        
+        $this->notice_framework->show_recommended_plugins();
+        $this->notice_framework->show_all_premium_discount_offer();
+        $this->notice_framework->show_random_campaigns_offers();
+        // if ( $this->is_premium ) {
+        //     $this->notice_framework->offer_about_wqpmb_only_free_version();
+        // } else {
+        //     $this->notice_framework->offer_about_wqpmb_premium();
+        // }
+    }
+
 
 
 

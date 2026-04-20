@@ -87,6 +87,40 @@ $our_data = $this->data;
                 </button>
                 
             </div>
+            <div class="wqpmb-section-panel wqpmb-recomendation-area" id="wqpmb-recomendation-area">
+                <table class="wqpmb-table universal-setting">
+                    <thead>
+                        <tr>
+                            <th class="wqpmb-inside">
+                                <div class="wqpmb-table-header-inside">
+                                    <h3><?php echo esc_html__('Recommendation Area', 'wc-quantity-plus-minus-button'); ?> <small class="wqpmb-small-title"><?php echo esc_html__( 'To increase Sale', 'wc-quantity-plus-minus-button' ); ?></small></h3>
+                                </div>
+
+                            </th>
+                            <th>
+                                <div class="wqpmb-table-header-right-side"></div>
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr>
+                        <td>
+                            <div class="wqpmb-form-control">
+                                <div class="form-label col-lg-12">
+                                <?php do_action( 'wqpmb_plugin_recommend_here' ); ?>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="wqpmb-form-info">
+                                <p><?php echo esc_html__( 'Highly Recommended these plugin. Which will help you to increase your WooCommerce sale.', 'wc-quantity-plus-minus-button' ); ?></p>
+                            </div> 
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div> <!--/.wqpmb-recomendation-area -->
 
         </form>
         <?php
