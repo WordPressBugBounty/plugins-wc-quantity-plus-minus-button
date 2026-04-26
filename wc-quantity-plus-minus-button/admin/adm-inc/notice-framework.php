@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Notice_Framework {
     public $framework;
-    private $offer_prefix = 'wqpmb-offer-dsfdsfdsfdsf';
+    private $offer_prefix = 'wqpmb-offer-s122';
 
     public function __construct()
     {
@@ -30,7 +30,7 @@ class Notice_Framework {
         $this->framework->create_offer( $this->get_offer_args(
             array(
                 'id'            => $this->offer_prefix . '-inside-only-free',
-                'pages'         => [],
+                'pages'         => ['wqpmb'],
                 'template'      => 'starter',
                 'title'         => 'CodeAstrology PLUGINS',
                 'description'   => 'Grab your exclusive discount now! for WooCommerce Addons. Claim your discount!',
@@ -38,7 +38,7 @@ class Notice_Framework {
                 'image_url'     => '',
                 'reshow_unit'   => 'hours',
                 'dismiss'       => false,
-                'randomize'     => 5,
+                'randomize'     => 100,
                 'buttons'       => array(
                     array(
                         'text'  => 'Get 50% OFF',
@@ -79,7 +79,7 @@ class Notice_Framework {
                     'title'         => 'WooProductTable - Product Table for WooCommerce',
                     'pages'         => array(),
                     'pages_exclude' => array( 'wqpmb-settings', 'plugins', 'tools' ),
-                    'randomize'     => 5,
+                    'randomize'     => 100,
                     'highlight_text' => '',
                     'image_url'     => WQPMB_BASE_URL . 'assets/images/product-table-logo.png',
                     'target_plugin' => array(

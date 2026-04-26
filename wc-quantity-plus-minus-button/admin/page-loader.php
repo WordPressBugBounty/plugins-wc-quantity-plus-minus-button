@@ -72,8 +72,11 @@ class Page_Loader extends Base
         $this->notice_framework = new Notice_Framework();
         
         $this->notice_framework->show_recommended_plugins();
-        $this->notice_framework->show_all_premium_discount_offer();
-        $this->notice_framework->show_random_campaigns_offers();
+        //apatoto bad,tobe chalu korbo porer update e
+        // $this->notice_framework->show_all_premium_discount_offer();
+
+        //etate chalu korle age check kore nite hobe. er por update e chalu korbo
+        // $this->notice_framework->show_random_campaigns_offers();
         // if ( $this->is_premium ) {
         //     $this->notice_framework->offer_about_wqpmb_only_free_version();
         // } else {
