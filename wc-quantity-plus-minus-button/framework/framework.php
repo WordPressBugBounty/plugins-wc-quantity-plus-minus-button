@@ -152,7 +152,7 @@ if ( ! class_exists( 'CA_Framework' ) ) {
             wp_enqueue_script(
                 'ca-framework',
                 $this->framework_url . 'assets/js/framework.js',
-                array( 'jquery' ),
+                array( 'jquery', 'updates' ),
                 self::VERSION,
                 true
             );

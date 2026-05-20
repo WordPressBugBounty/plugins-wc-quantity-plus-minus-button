@@ -7,11 +7,11 @@
  * Author: CodeAstrology Team
  * Author URI: https://codeastrology.com/
  *
- * Version: 2.0.7
+ * Version: 2.0.8
  * Requires at least:    4.0.0
- * Tested up to:         6.9
+ * Tested up to:         7.0
  * WC requires at least: 3.7
- * WC tested up to: 	 10.7.0
+ * WC tested up to: 	 10.7.2
  * 
  * Text Domain: wc-quantity-plus-minus-button
  * Domain Path: /languages
@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 if ( !defined( 'WQPMB_VERSION' ) ) {
-    define( 'WQPMB_VERSION', '2.0.7.0' );
+    define( 'WQPMB_VERSION', '2.0.8.0' );
 }
 
 if ( !defined( 'WQPMB_NAME' ) ) {
