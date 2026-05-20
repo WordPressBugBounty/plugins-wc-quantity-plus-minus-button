@@ -7,7 +7,7 @@
  * Author: CodeAstrology Team
  * Author URI: https://codeastrology.com/
  *
- * Version: 2.0.8
+ * Version: 2.0.9
  * Requires at least:    4.0.0
  * Tested up to:         7.0
  * WC requires at least: 3.7
@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 if ( !defined( 'WQPMB_VERSION' ) ) {
-    define( 'WQPMB_VERSION', '2.0.8.0' );
+    define( 'WQPMB_VERSION', '2.0.9.0' );
 }
 
 if ( !defined( 'WQPMB_NAME' ) ) {
@@ -79,7 +79,7 @@ if( ! class_exists( 'WQPMB_Button' ) ){
         /**
          * Option names Array, We have used to option key for WP Option table
          *
-         * @var type Array
+         * @var array Array
          */
         public static $option = array(
             'option' => 'wqpmb_configs',
@@ -89,7 +89,7 @@ if( ! class_exists( 'WQPMB_Button' ) ){
         /**
          * CSS selector for Plus Minus Button tag
          *
-         * @var type String
+         * @var string
          */
         public static $css_selector = '.qib-button-wrapper button.qib-button';
 
@@ -119,7 +119,7 @@ if( ! class_exists( 'WQPMB_Button' ) ){
          * Get this by getPath() method
          * Set this by setConstant() method
          *  
-         * @var type array
+         * @var array
          */
         private static $constant = array();
 

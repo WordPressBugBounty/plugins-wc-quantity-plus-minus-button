@@ -4,7 +4,7 @@ Contributors: codersaiful, bizzplugin, codeastrology, mdibrahimk48, unikforce, f
 Tags: woocommerce quantity, plus minus button, quantity, qty button
 Requires at least: 4.0.0
 Tested up to: 7.0
-Stable tag: 2.0.8
+Stable tag: 2.0.9
 Requires PHP: 5.4
 License: GPL3+
 License URI: http://www.gnu.org/licenses/gpl.html
@@ -87,6 +87,15 @@ In that directory, template files folder will be locate
 **🥇 CONTRIBUTE 🥇**<br>
 You are welcome to contribute  to this project. Join with us [Fork Github repository](https://github.com/codersaiful/wc-quantity-plus-minus-button/fork). If you contribute 1 commit, We will add your name to our plugin's Contributor table/list of WordPress Plugin too.
 
+## Privacy Policy 
+Quantity Plus Minus Button for WooCommerce by CodeAstrology uses [Appsero](https://appsero.com) SDK to collect some telemetry data upon user's confirmation. This helps us to troubleshoot problems faster & make product improvements.
+
+Appsero SDK **does not gather any data by default.** The SDK only starts gathering basic telemetry data **when a user allows it via the admin notice**. We collect the data to ensure a great user experience for all our users. 
+
+Integrating Appsero SDK **DOES NOT IMMEDIATELY** start gathering data, **without confirmation from users in any case.**
+
+Learn more about how [Appsero collects and uses this data](https://appsero.com/privacy-policy/).
+
 == Installation ==
 
 1. Upload 'wc-quantity-plus-minus-button' to the '/wp-content/plugins/' directory
@@ -155,7 +164,7 @@ That's it. So easy, Right !!!
 
 == Change log ==
 
-= 2.0.8 =
+= 2.0.8 & 2.0.9 =
 * Tested with latest WordPress and WooCommerce version and updated.
 * Bug fixed.
 

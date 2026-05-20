@@ -58,6 +58,10 @@ class Page_Loader extends Base
         add_action( 'admin_menu', [$this, 'admin_menu'] );
         add_action( 'admin_enqueue_scripts', [$this, 'admin_enqueue_scripts'] );
 
+        if( class_exists( '\WQPMB\Admin\Appseros\Src\Client' ) ) {
+            $client = new \WQPMB\Admin\Appseros\Src\Client( 'b39316df-e8df-44aa-be77-277dac809411', 'Quantity Plus Minus Button', WQPMB_MAIN_FILE );
+            $client->insights()->init();
+        }
     }
 
     /**
