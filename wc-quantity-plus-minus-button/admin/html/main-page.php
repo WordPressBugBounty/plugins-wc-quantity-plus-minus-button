@@ -123,6 +123,9 @@ $our_data = $this->data;
             </div> <!--/.wqpmb-recomendation-area -->
 
         </form>
+
+        <?php \CodeAstrology\Shared\Expert_Services::render_settings_card( 'quantity-plus-minus-button' ); ?>
+
         <?php
         //It's old action hook
         do_action( 'wqpmb_bottom_panel', $our_data, $datas );

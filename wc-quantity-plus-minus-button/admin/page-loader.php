@@ -28,7 +28,11 @@ class Page_Loader extends Base
 
     public function __construct()
     {
+        require_once $this->base_dir . '/admin/class-codeastrology-expert-services.php';
+        require_once $this->base_dir . '/admin/class-codeastrology-sale-notice.php';
+
         $this->is_premium = wqpmb_is_premium();
+
         /**
          * No need to call construct
          * actually I assign again option_key and data
@@ -44,12 +48,65 @@ class Page_Loader extends Base
         $this->topbar_file_dir = $this->base_dir . '/admin/html/topbar.php';
 
         
+
+        
         add_action( 'admin_init', [ $this, 'init_notice_framework' ] );
+        add_action( 'init', [ $this, 'register_sale_notice' ], 20 );
+        add_action( 'init', [ $this, 'run_hire_an_expert' ], 88 );
 
         //Initialize Premium Placeholder
         $placeholder = new Placeholder();   
         $placeholder->run();
 
+    }
+
+    /**
+     * Register the sale notice after WordPress is ready to load translations.
+     *
+     * @return void
+     */
+    public function register_sale_notice()
+    {
+        \CodeAstrology\Shared\Sale_Notice::register( array(
+            'key'           => 'quantity-plus-minus-button',
+            'plugin_name'   => 'Quantity Plus Minus Button',
+            'capability'    => apply_filters( 'wqpmb_menu_capability', 'manage_woocommerce' ),
+            'screen_tokens' => array( 'wqpmb' ),
+            'purchase_url'  => 'https://codeastrology.com/downloads/quick-cart-and-plus-minus/',
+            'has_premium'   => true,
+            'is_premium'    => function() {
+                return function_exists( 'wqpmb_is_premium' ) && wqpmb_is_premium();
+            },
+            'headline'      => __( 'Super Sale on Quick Cart and Plus Minus', 'wc-quantity-plus-minus-button' ),
+            'description'   => __( 'Unlock premium quantity controls and cart features at a special limited-time price.', 'wc-quantity-plus-minus-button' ),
+        ) );
+    }
+
+    public function run_hire_an_expert()
+    {
+        \CodeAstrology\Shared\Expert_Services::register( array(
+            'key'            => 'quantity-plus-minus-button',
+            'plugin_name'    => __( 'Quantity Plus Minus Button for WooCommerce', 'wc-quantity-plus-minus-button' ),
+            'plugin_version' => WQPMB_VERSION,
+            'parent_slug'    => $this->slug,
+            'menu_slug'      => 'wqpmb-hire-expert',
+            'capability'     => apply_filters( 'wqpmb_menu_capability', 'manage_woocommerce' ),
+            'asset_url'      => $this->base_url . 'assets/css/expert-services.css',
+            'headline'       => __( 'Need Custom Quantity Controls or WooCommerce Development?', 'wc-quantity-plus-minus-button' ),
+            'description'    => __( 'Our WordPress and WooCommerce experts can customize quantity buttons, product-page interactions, cart behavior, ordering workflows, or any store feature you need. We deliver reliable, high-quality work at an affordable budget.', 'wc-quantity-plus-minus-button' ),
+            'settings_description' => __( 'Need custom quantity controls, product-page interactions, cart behavior, pricing, or another WooCommerce workflow? Our experts can build it for you.', 'wc-quantity-plus-minus-button' ),
+            'services'       => array(
+                __( 'Custom plus/minus buttons and quantity input behavior', 'wc-quantity-plus-minus-button' ),
+                __( 'Product, archive, cart, and checkout customization', 'wc-quantity-plus-minus-button' ),
+                __( 'Mobile-friendly WooCommerce user experience improvements', 'wc-quantity-plus-minus-button' ),
+                __( 'Custom quantity, pricing, and ordering workflows', 'wc-quantity-plus-minus-button' ),
+                __( 'Plugin integrations and custom WooCommerce features', 'wc-quantity-plus-minus-button' ),
+                __( 'Bug fixing, performance optimization, and maintenance', 'wc-quantity-plus-minus-button' ),
+            ),
+            'contact_email'  => 'contact@codeastrology.com',
+            'gmail_email'    => 'codersaiful@gmail.com',
+            'contact_url'    => 'https://codeastrology.com/contact-us/',
+        ) );
     }
 
     public function run()
