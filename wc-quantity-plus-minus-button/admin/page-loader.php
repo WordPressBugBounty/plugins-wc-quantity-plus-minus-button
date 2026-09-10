@@ -1,6 +1,10 @@
 <?php
 namespace WQPMB\Admin;
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly.
+}
+
 use WQPMB\Core\Base;
 use WQPMB\Admin\Premium_Placeholder as Placeholder;
 use WQPMB\Admin\Adm_Inc\Notice_Framework;
@@ -74,6 +78,7 @@ class Page_Loader extends Base
             'screen_tokens' => array( 'wqpmb' ),
             'purchase_url'  => 'https://codeastrology.com/downloads/quick-cart-and-plus-minus/',
             'has_premium'   => true,
+            'exclude_pages' => array( 'wqpmb-free-store-audit' ),
             'is_premium'    => function() {
                 return function_exists( 'wqpmb_is_premium' ) && wqpmb_is_premium();
             },
@@ -89,12 +94,20 @@ class Page_Loader extends Base
             'plugin_name'    => __( 'Quantity Plus Minus Button for WooCommerce', 'wc-quantity-plus-minus-button' ),
             'plugin_version' => WQPMB_VERSION,
             'parent_slug'    => $this->slug,
-            'menu_slug'      => 'wqpmb-hire-expert',
+            'menu_slug'      => 'wqpmb-free-store-audit',
+            'menu_title'     => __( 'Free Store Audit', 'wc-quantity-plus-minus-button' ),
             'capability'     => apply_filters( 'wqpmb_menu_capability', 'manage_woocommerce' ),
             'asset_url'      => $this->base_url . 'assets/css/expert-services.css',
-            'headline'       => __( 'Need Custom Quantity Controls or WooCommerce Development?', 'wc-quantity-plus-minus-button' ),
-            'description'    => __( 'Our WordPress and WooCommerce experts can customize quantity buttons, product-page interactions, cart behavior, ordering workflows, or any store feature you need. We deliver reliable, high-quality work at an affordable budget.', 'wc-quantity-plus-minus-button' ),
-            'settings_description' => __( 'Need custom quantity controls, product-page interactions, cart behavior, pricing, or another WooCommerce workflow? Our experts can build it for you.', 'wc-quantity-plus-minus-button' ),
+            'asset_pages'    => array( 'wqpmb-settings' ),
+            'page_mode'      => 'audit',
+            'headline'       => __( 'Get a Free Audit of Your WooCommerce Store', 'wc-quantity-plus-minus-button' ),
+            'description'    => __( 'We audit speed, plugins, SEO visibility, checkout, basic security signals, and the quantity experience from product page to cart—then share clear, practical recommendations.', 'wc-quantity-plus-minus-button' ),
+            'settings_eyebrow' => __( 'FREE STORE AUDIT', 'wc-quantity-plus-minus-button' ),
+            'settings_description' => __( 'Let our team audit your quantity controls and the key technical and conversion signals across your WooCommerce store.', 'wc-quantity-plus-minus-button' ),
+            'settings_button_text' => __( 'Request Free Audit', 'wc-quantity-plus-minus-button' ),
+            'audit_focus_icon' => 'dashicons-plus-alt2',
+            'audit_focus_title' => __( 'Quantity Controls & Cart UX', 'wc-quantity-plus-minus-button' ),
+            'audit_focus_description' => __( 'Button usability, quantity input behavior, product and cart interactions, mobile experience, and ordering friction.', 'wc-quantity-plus-minus-button' ),
             'services'       => array(
                 __( 'Custom plus/minus buttons and quantity input behavior', 'wc-quantity-plus-minus-button' ),
                 __( 'Product, archive, cart, and checkout customization', 'wc-quantity-plus-minus-button' ),
@@ -171,7 +184,7 @@ class Page_Loader extends Base
         if( strpos( $s_id, $this->plugin_prefix ) !== false ){
 
             wp_enqueue_style( 'wp-color-picker' );
-            wp_register_script( $this->plugin_prefix . '-admin-script', $this->base_url .'assets/js/admin-script.js', array( 'wp-color-picker' ), false, true );
+            wp_register_script( $this->plugin_prefix . '-admin-script', $this->base_url .'assets/js/admin-script.js', array( 'wp-color-picker' ), WQPMB_VERSION, true );
             wp_enqueue_script( $this->plugin_prefix . '-admin-script' );
 
             $ajax_url = admin_url( 'admin-ajax.php' );
@@ -215,9 +228,9 @@ class Page_Loader extends Base
     {
         /**
          * how to disable live chat
-         * add_filter('wpt_live_chat_bool','__return_false');
+         * add_filter('wqpmb_live_chat_bool','__return_false');
          */
-        $live_chat_bool = apply_filters( 'wpt_live_chat_bool', true );
+        $live_chat_bool = apply_filters( 'wqpmb_live_chat_bool', true );
         if( ! $live_chat_bool ) return;
         ?>
         <!--Start of Tawk.to Script-->

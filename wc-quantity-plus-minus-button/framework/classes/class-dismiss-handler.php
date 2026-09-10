@@ -51,10 +51,10 @@ if ( ! class_exists( 'CA_Framework_Dismiss_Handler' ) ) {
                 wp_send_json_error( 'Unauthorized' );
             }
 
-            $dismiss_id   = isset( $_POST['dismiss_id'] ) ? sanitize_key( $_POST['dismiss_id'] ) : '';
-            $dismiss_type = isset( $_POST['dismiss_type'] ) ? sanitize_key( $_POST['dismiss_type'] ) : 'permanent';
-            $reshow_after = isset( $_POST['reshow_after'] ) ? absint( $_POST['reshow_after'] ) : 0;
-            $reshow_unit  = isset( $_POST['reshow_unit'] ) ? sanitize_key( $_POST['reshow_unit'] ) : 'days';
+            $dismiss_id   = isset( $_POST['dismiss_id'] ) ? sanitize_key( wp_unslash( $_POST['dismiss_id'] ) ) : '';
+            $dismiss_type = isset( $_POST['dismiss_type'] ) ? sanitize_key( wp_unslash( $_POST['dismiss_type'] ) ) : 'permanent';
+            $reshow_after = isset( $_POST['reshow_after'] ) ? absint( wp_unslash( $_POST['reshow_after'] ) ) : 0;
+            $reshow_unit  = isset( $_POST['reshow_unit'] ) ? sanitize_key( wp_unslash( $_POST['reshow_unit'] ) ) : 'days';
 
             if ( empty( $dismiss_id ) ) {
                 wp_send_json_error( 'Invalid dismiss ID' );

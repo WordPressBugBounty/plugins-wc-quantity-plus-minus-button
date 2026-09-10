@@ -7,14 +7,14 @@
  * Author: CodeAstrology Team
  * Author URI: https://codeastrology.com/
  *
- * Version: 2.1.0
+ * Version: 2.1.1
  * Requires at least:    4.0.0
  * Tested up to:         7.1
  * WC requires at least: 3.7
  * WC tested up to: 	 11.0
  * 
  * Text Domain: wc-quantity-plus-minus-button
- * Domain Path: /languages
+ * Domain Path: /languages/
  * @fs_premium_only /premium/premium-loader.php, /premium/
  * 
  * License: GPL3+
@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 if ( !defined( 'WQPMB_VERSION' ) ) {
-    define( 'WQPMB_VERSION', '2.1.0.0' );
+    define( 'WQPMB_VERSION', '2.1.1.0' );
 }
 
 if ( !defined( 'WQPMB_NAME' ) ) {
@@ -157,8 +157,8 @@ if( ! class_exists( 'WQPMB_Button' ) ){
         /**
          * To Get Full path to Anywhere based on Constant
          * 
-         * @param type $constant_name
-         * @return type String
+         * @param string $constant_name
+         * @return string
          */
         public static function getPath( $constant_name = false ) {
             $path = self::$constant[$constant_name];
@@ -169,7 +169,7 @@ if( ! class_exists( 'WQPMB_Button' ) ){
          * Getting full Plugin data. We have used __FILE__ for the main plugin file.
          * 
          * @since V 1.5
-         * @return Array Returnning Array of full Plugin's data for This Woo Product Table plugin
+         * @return array Returnning Array of full Plugin's data for This Woo Product Table plugin
          */
         public static function getPluginData() {
             return get_plugin_data( __FILE__ );
@@ -178,7 +178,7 @@ if( ! class_exists( 'WQPMB_Button' ) ){
         /**
          * Getting Version by this Function/Method
          * 
-         * @return type static String
+         * @return string static String
          */
         public static function getVersion() {
             $data = self::getPluginData();
@@ -188,7 +188,7 @@ if( ! class_exists( 'WQPMB_Button' ) ){
         /**
          * Getting Version by this Function/Method
          * 
-         * @return type static String
+         * @return string static String
          */
         public static function getName() {
             $data = self::getPluginData();
@@ -222,9 +222,11 @@ if( ! class_exists( 'WQPMB_Button' ) ){
                 add_action( 'admin_notices', [$this, 'admin_notice_minimum_php_version'] );
                 return;
             }
-            add_action( 'plugins_loaded', function () {
-                load_plugin_textdomain( 'wc-quantity-plus-minus-button', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
-            } );
+            /**
+             * Translations are loaded automatically by WordPress since 4.6
+             * for plugins hosted on WordPress.org, so load_plugin_textdomain()
+             * is no longer called here.
+             */
             $dir = dirname( __FILE__ );
             
             /**
@@ -262,8 +264,9 @@ if( ! class_exists( 'WQPMB_Button' ) ){
         }
 
         public function admin_notice_missing_main_plugin() {
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only flag set by WordPress after activation.
             if ( isset( $_GET['activate'] ) ) {
-                unset($_GET['activate']);
+                unset( $_GET['activate'] );
             }
             $message = sprintf( 
                 /* translators: 1: Plugin name 2: Plugin name */
@@ -271,12 +274,13 @@ if( ! class_exists( 'WQPMB_Button' ) ){
                 '<strong>' . WQPMB_NAME . '</strong>',
                 '<strong><a href="' . esc_url( 'https://wordpress.org/plugins/woocommerce/' ) . '" target="_blank">' . esc_html__( 'WooCommerce', 'wc-quantity-plus-minus-button' ) . '</a></strong>'
             );
-            printf( '<div class="notice notice-error is-dismissible"><p>%1$s</p></div>', $message );
+            printf( '<div class="notice notice-error is-dismissible"><p>%1$s</p></div>', wp_kses_post( $message ) );
         }
 
         public function admin_notice_minimum_php_version() {
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only flag set by WordPress after activation.
             if ( isset( $_GET['activate'] ) ) {
-                unset($_GET['activate']);
+                unset( $_GET['activate'] );
             }
             $message = sprintf(
                 /* translators: 1: Plugin name 2: PHP 3: Required PHP version */
@@ -285,7 +289,7 @@ if( ! class_exists( 'WQPMB_Button' ) ){
                 '<strong>' . esc_html__( 'PHP', 'wc-quantity-plus-minus-button' ) . '</strong>',
                 self::MINIMUM_PHP_VERSION
             );
-            printf( '<div class="notice notice-error is-dismissible"><p>%1$s</p></div>', $message );
+            printf( '<div class="notice notice-error is-dismissible"><p>%1$s</p></div>', wp_kses_post( $message ) );
         }
 
         public static function defaultDatas() {
@@ -323,26 +327,12 @@ if( ! class_exists( 'WQPMB_Button' ) ){
 }
 WQPMB_Button::getInstance();    
 
-if ( !function_exists( 'wqpmb_load_textdomain' ) ) {
-    /**
-     * Loads the plugin's translated strings.
-     *
-     * This function loads the text domain for the 'product-sync-master-sheet' plugin, 
-     * enabling translation of plugin strings based on the current locale. It looks for 
-     * the translation files in the '/languages' directory of the plugin.
-     *
-     * @since 1.0.0
-     */
-    function wqpmb_load_textdomain() {
-        load_plugin_textdomain(
-            'wc-quantity-plus-minus-button',
-            false,
-            dirname( plugin_basename( __FILE__ ) ) . '/languages/'
-        );
-    }
-    add_action( 'init', 'wqpmb_load_textdomain' );
-
-}
+/**
+ * Translations are served from translate.wordpress.org and loaded
+ * automatically by WordPress, so no load_plugin_textdomain() call is needed.
+ *
+ * @since 2.1.1
+ */
 
 register_activation_hook( __FILE__, array('WQPMB_Button', 'install') );
 register_deactivation_hook( __FILE__, array('WQPMB_Button', 'uninstall') );

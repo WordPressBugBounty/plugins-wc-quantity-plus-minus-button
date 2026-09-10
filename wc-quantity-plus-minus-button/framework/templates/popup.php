@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <div class="ca-fw-popup-overlay" id="ca-fw-popup-<?php echo esc_attr( $popup['id'] ); ?>" data-dismiss-id="<?php echo esc_attr( $popup['id'] ); ?>" data-dismiss-type="<?php echo esc_attr( $popup['dismiss_type'] ); ?>" data-reshow-after="<?php echo esc_attr( $popup['reshow_after'] ); ?>" data-reshow-unit="<?php echo esc_attr( $popup['reshow_unit'] ); ?>">
     <div class="ca-fw-popup" style="max-width: <?php echo esc_attr( $popup['width'] ); ?>;">
-        <button class="ca-fw-dismiss ca-fw-popup-close" data-dismiss-id="<?php echo esc_attr( $popup['id'] ); ?>" data-dismiss-type="<?php echo esc_attr( $popup['dismiss_type'] ); ?>" data-reshow-after="<?php echo esc_attr( $popup['reshow_after'] ); ?>" data-reshow-unit="<?php echo esc_attr( $popup['reshow_unit'] ); ?>" title="<?php esc_attr_e( 'Close', 'flavor-jelee' ); ?>">
+        <button class="ca-fw-dismiss ca-fw-popup-close" data-dismiss-id="<?php echo esc_attr( $popup['id'] ); ?>" data-dismiss-type="<?php echo esc_attr( $popup['dismiss_type'] ); ?>" data-reshow-after="<?php echo esc_attr( $popup['reshow_after'] ); ?>" data-reshow-unit="<?php echo esc_attr( $popup['reshow_unit'] ); ?>" title="<?php esc_attr_e( 'Close', 'wc-quantity-plus-minus-button' ); ?>">
             <span class="dashicons dashicons-no-alt"></span>
         </button>
 
@@ -40,10 +40,10 @@ if ( ! defined( 'ABSPATH' ) ) {
                 <div class="ca-fw-popup-desc"><?php echo wp_kses_post( $popup['description'] ); ?></div>
             <?php endif; ?>
 
-            <?php echo CA_Framework_Render_Elements::render_countdown( $popup ); ?>
+            <?php echo CA_Framework_Render_Elements::render_countdown( $popup ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- markup is built and escaped inside the renderer. ?>
 
             <?php if ( ! empty( $popup['buttons'] ) ) : ?>
-                <?php echo CA_Framework_Render_Elements::render_buttons( $popup['buttons'], $popup['target_plugin'] ); ?>
+                <?php echo CA_Framework_Render_Elements::render_buttons( $popup['buttons'], $popup['target_plugin'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- markup is built and escaped inside the renderer. ?>
             <?php endif; ?>
         </div>
     </div>

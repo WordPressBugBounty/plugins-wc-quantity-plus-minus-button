@@ -1,5 +1,9 @@
 <?php
-###### Some helping code snippet available here #### 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly.
+}
+
+###### Some helping code snippet available here ####
 ### not included in plugin actually ##### 
 
 
@@ -21,12 +25,12 @@
  *
  * @return bool
  */
-function ca_custom_off_plus_minus_specific($validation, $datas){
+function wqpmb_custom_off_plus_minus_specific($validation, $datas){
 	if( is_cart() ){ //you can use any other page condition.
 		return false;
 	}
 	return $validation;
 }
-add_filter('wqpmb_show_validation', 'ca_custom_off_plus_minus_specific', 10, 2);
+add_filter('wqpmb_show_validation', 'wqpmb_custom_off_plus_minus_specific', 10, 2);
 
 

@@ -1,0 +1,624 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Quantity Plus Minus Button for WooCommerce\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-10 05:13+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.8.8; wp-7.1; php-8.4.16\n"
+"X-Domain: wc-quantity-plus-minus-button"
+
+#. 1: Plugin name 2: Plugin name
+#: init.php:273
+#, php-format
+msgid "\"%1$s\" requires \"%2$s\" to be installed and activated."
+msgstr ""
+
+#. 1: Plugin name 2: PHP 3: Required PHP version
+#: init.php:287
+#, php-format
+msgid "\"%1$s\" requires \"%2$s\" version %3$s or greater."
+msgstr ""
+
+#. %s: Quantity.
+#: template/global/quantity-input.php:42
+#, php-format
+msgid "%s quantity"
+msgstr ""
+
+#: admin/premium-placeholder.php:87
+msgid "30-Day Money Back Guarantee"
+msgstr ""
+
+#: admin/adm-inc/notice-framework.php:492
+msgid "A multi currency switcher for WooCommerce."
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:275
+msgid "A practical look at the parts of your store that matter"
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:215
+msgid "A SIMPLE PROCESS"
+msgstr ""
+
+#: framework/classes/class-recommended-plugin.php:190 framework/classes/class-required-plugin.php:209
+msgid "Activate"
+msgstr ""
+
+#: admin/premium-placeholder.php:59
+msgid "Add box shadows, custom transitions, and advanced CSS effects."
+msgstr ""
+
+#: admin/adm-inc/notice-framework.php:483
+msgid "Add color and image swatches to your WooCommerce products."
+msgstr ""
+
+#: admin/premium-placeholder.php:47
+msgid "Add eye-catching animations like pulse, bounce, scale, and rotate effects."
+msgstr ""
+
+#: admin/adm-inc/notice-framework.php:474
+msgid "Add quick view functionality to your WooCommerce products."
+msgstr ""
+
+#: admin/html/custom-css-settings.php:26
+msgid "Add your custom CSS here"
+msgstr ""
+
+#: admin/premium-placeholder.php:58
+msgid "Advanced Styling"
+msgstr ""
+
+#: admin/class-codeastrology-sale-notice.php:116
+msgid "All Plugins"
+msgstr ""
+
+#: admin/page-loader.php:117
+msgid "Bug fixing, performance optimization, and maintenance"
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:221
+msgid "Build and deliver"
+msgstr ""
+
+#: admin/premium-placeholder.php:46
+msgid "Button Animations"
+msgstr ""
+
+#: admin/premium-placeholder.php:52
+msgid "Button Position Control"
+msgstr ""
+
+#: admin/html/button-settings.php:11
+msgid "Button Settings"
+msgstr ""
+
+#: admin/page-loader.php:110
+msgid "Button usability, quantity input behavior, product and cart interactions, mobile experience, and ordering friction."
+msgstr ""
+
+#: admin/premium-placeholder.php:41
+msgid "Choose from multiple icon styles or use custom text/icons for your buttons."
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:263
+msgid "Clear, practical next steps"
+msgstr ""
+
+#: framework/templates/popup.php:20
+msgid "Close"
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:188
+msgid "CODEASTROLOGY EXPERT SERVICES"
+msgstr ""
+
+#: admin/class-codeastrology-sale-notice.php:103
+msgid "CodeAstrology special offer"
+msgstr ""
+
+#: admin/class-codeastrology-sale-notice.php:48
+msgid "CodeAstrology Super Sale"
+msgstr ""
+
+#. Author of the plugin
+#: admin/class-codeastrology-expert-services.php:413
+msgid "CodeAstrology Team"
+msgstr ""
+
+#: admin/premium-placeholder.php:75
+msgid "Comming Template"
+msgstr ""
+
+#: includes/admin-menu.php:35
+msgid "Contact to Developer"
+msgstr ""
+
+#: admin/premium-placeholder.php:53
+msgid "Control button positioning with vertical, reversed, and custom layouts."
+msgstr ""
+
+#: admin/adm-inc/notice-framework.php:456
+msgid "Control minimum, maximum quantity and step for WooCommerce products."
+msgstr ""
+
+#: admin/premium-placeholder.php:76
+msgid "Create custom button templates with unique styles and layouts."
+msgstr ""
+
+#: admin/premium-placeholder.php:40
+msgid "Custom Button Icons"
+msgstr ""
+
+#: admin/html/custom-css-settings.php:11
+msgid "Custom CSS"
+msgstr ""
+
+#: admin/page-loader.php:112
+msgid "Custom plus/minus buttons and quantity input behavior"
+msgstr ""
+
+#: admin/page-loader.php:115
+msgid "Custom quantity, pricing, and ordering workflows"
+msgstr ""
+
+#: framework/classes/class-render-elements.php:112
+msgid "Days"
+msgstr ""
+
+#: includes/admin-menu.php:16 includes/admin-menu.php:34
+msgid "Demo"
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:192
+msgid "Discuss Your Project"
+msgstr ""
+
+#: framework/classes/class-recommended-plugin.php:158 framework/templates/offer-developer.php:24 framework/templates/offer-flash.php:24 framework/templates/offer-starter.php:25
+msgid "Dismiss"
+msgstr ""
+
+#: admin/adm-inc/notice-framework.php:501
+msgid "Display Google Sheet data in WordPress tables with live sync."
+msgstr ""
+
+#: admin/adm-inc/notice-framework.php:447
+msgid "Display WooCommerce products in a table layout."
+msgstr ""
+
+#. Description of the plugin
+msgid "Easily add plus,minus button for WooCommerce Quantity Input box in everywhere. Such: Single Page, In Loop Quantity input, Cart page etc."
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:194 admin/class-codeastrology-expert-services.php:391 admin/class-codeastrology-expert-services.php:419
+msgid "Email Us"
+msgstr ""
+
+#: framework/classes/class-recommended-plugin.php:156
+msgid "Enhance your experience with these recommended plugins:"
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:57
+msgid "Explore Expert Help"
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:417
+msgid "Explore Free Store Audit"
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:233
+msgid "FOR APPROVED PROJECTS"
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:309
+msgid "FOR EXISTING CLIENTS ONLY"
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:261
+msgid "Free initial audit"
+msgstr ""
+
+#: admin/page-loader.php:105
+msgid "FREE STORE AUDIT"
+msgstr ""
+
+#: admin/page-loader.php:98
+msgid "Free Store Audit"
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:257
+msgid "FREE WORDPRESS & WOOCOMMERCE AUDIT"
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:120
+msgid "Free WordPress & WooCommerce Store Audit"
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:216
+msgid "From requirement to reliable delivery"
+msgstr ""
+
+#: admin/page-loader.php:103
+msgid "Get a Free Audit of Your WooCommerce Store"
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:415
+msgid "Get a free initial audit covering speed, plugins, SEO visibility, checkout, basic security signals, and the experience related to your CodeAstrology plugin."
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:227
+msgid "Get an Affordable Quote"
+msgstr ""
+
+#: admin/premium-placeholder.php:65
+msgid "Get dedicated priority support for all your questions and issues."
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:296
+msgid "Get prioritized next steps"
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:193 admin/class-codeastrology-expert-services.php:418
+msgid "Gmail Us"
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:226
+msgid "HAVE A PROJECT IN MIND?"
+msgstr ""
+
+#: admin/html/main-page.php:127
+msgid "Highly Recommended these plugin. Which will help you to increase your WooCommerce sale."
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:42
+msgid "Hire an Expert"
+msgstr ""
+
+#: framework/classes/class-render-elements.php:117
+msgid "Hours"
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:290
+msgid "HOW IT WORKS"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://codeastrology.com/"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://demo.wooproducttable.com/product/beanie/"
+msgstr ""
+
+#: includes/admin-menu.php:399
+msgid "I have found an issue with your Quantity Plus Minus Button plugin. I will explain here with screenshot.Issues And Screenshots:"
+msgstr ""
+
+#: admin/html/inputbox-settings.php:11
+msgid "Input Box Settings"
+msgstr ""
+
+#: framework/classes/class-recommended-plugin.php:185 framework/classes/class-required-plugin.php:204
+msgid "Install"
+msgstr ""
+
+#: admin/page-loader.php:106
+msgid "Let our team audit your quantity controls and the key technical and conversion signals across your WooCommerce store."
+msgstr ""
+
+#: includes/admin-menu.php:35
+msgid "Mail to Developer"
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:238 admin/class-codeastrology-expert-services.php:314
+msgid "Make a Secure Payment"
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:234 admin/class-codeastrology-expert-services.php:310
+msgid "Make a Secure Payment - USD"
+msgstr ""
+
+#: admin/html/topbar.php:14
+msgid "Manage and Settings"
+msgstr ""
+
+#: framework/classes/class-render-elements.php:122
+msgid "Min"
+msgstr ""
+
+#: admin/page-loader.php:114
+msgid "Mobile-friendly WooCommerce user experience improvements"
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:56
+msgid "NEED SOMETHING MORE CUSTOM?"
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:262
+msgid "No obligation to hire"
+msgstr ""
+
+#: admin/appseros/src/insights.php:734
+msgid "Once Weekly"
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:268
+msgid "or use your email app"
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:49
+msgid "Our experts build custom WordPress and WooCommerce solutions tailored to your business."
+msgstr ""
+
+#: admin/class-codeastrology-sale-notice.php:209
+msgid "Permission denied."
+msgstr ""
+
+#: init.php:289
+msgid "PHP"
+msgstr ""
+
+#: includes/admin-menu.php:16 includes/admin-menu.php:34
+msgid "Plugin Demo"
+msgstr ""
+
+#: admin/page-loader.php:116
+msgid "Plugin integrations and custom WooCommerce features"
+msgstr ""
+
+#: admin/html/topbar.php:27
+msgid "Plus Minus Button"
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:201
+msgid "Practical help for your entire WooCommerce store"
+msgstr ""
+
+#: admin/premium-placeholder.php:31
+msgid "Premium Features"
+msgstr ""
+
+#: admin/premium-placeholder.php:64
+msgid "Priority Support"
+msgstr ""
+
+#: template/global/quantity-input.php:111
+msgid "Product quantity"
+msgstr ""
+
+#: template/global/quantity-input.php:112
+msgctxt "Product quantity input tooltip"
+msgid "Qty"
+msgstr ""
+
+#: admin/page-loader.php:113
+msgid "Product, archive, cart, and checkout customization"
+msgstr ""
+
+#: template/global/quantity-input.php:42
+msgid "Quantity"
+msgstr ""
+
+#: admin/page-loader.php:109
+msgid "Quantity Controls & Cart UX"
+msgstr ""
+
+#. Name of the plugin
+#: admin/page-loader.php:94
+msgid "Quantity Plus Minus Button for WooCommerce"
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:302
+msgid "READY WHEN YOU ARE"
+msgstr ""
+
+#: admin/premium-placeholder.php:71
+msgid "Receive regular updates with new features and improvements."
+msgstr ""
+
+#: admin/html/main-page.php:106
+msgid "Recommendation Area"
+msgstr ""
+
+#: framework/classes/class-recommended-plugin.php:155
+msgid "Recommended Plugins"
+msgstr ""
+
+#: admin/premium-placeholder.php:70
+msgid "Regular Updates"
+msgstr ""
+
+#: admin/page-loader.php:107
+msgid "Request Free Audit"
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:266 admin/class-codeastrology-expert-services.php:303
+msgid "Request My Free Audit"
+msgstr ""
+
+#: admin/html/main-page.php:96
+msgid "Reset Settings"
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:220
+msgid "Review and estimate"
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:260
+msgid "Review highlights"
+msgstr ""
+
+#: admin/html/main-page.php:49 admin/html/main-page.php:89
+msgid "Save Change"
+msgstr ""
+
+#: admin/class-codeastrology-sale-notice.php:49
+msgid "Save up to 80% on selected premium WordPress and WooCommerce plugins for a limited time."
+msgstr ""
+
+#: framework/classes/class-render-elements.php:127
+msgid "Sec"
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:236 admin/class-codeastrology-expert-services.php:312
+msgid "Secure payment powered by Stripe."
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:267
+msgid "Send Details with Gmail"
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:302
+msgid "Send your store URL and tell us what concerns you most."
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:294
+msgid "Send your store URL, the issue you care about most, and any helpful screenshots. Do not send passwords."
+msgstr ""
+
+#: includes/admin-menu.php:14
+msgid "Settings"
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:219
+msgid "Share your requirement"
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:294
+msgid "Share your website"
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:302
+msgid "Start with the public website—no WordPress password is required for the initial review."
+msgstr ""
+
+#: admin/page-loader.php:85
+msgid "Super Sale on Quick Cart and Plus Minus"
+msgstr ""
+
+#: includes/admin-menu.php:17
+msgid "Support"
+msgstr ""
+
+#: admin/adm-inc/notice-framework.php:465
+msgid "Sync your product data with a google sheet."
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:226
+msgid "Tell us what you need - we will propose a quality solution that fits your budget."
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:219
+msgid "Tell us what you need, what is not working, or what you want to improve."
+msgstr ""
+
+#. 1: link to the plugin review page 2: start icon
+#: admin/page-loader.php:256
+#, php-format
+msgid "Thank you for using Plus Minus Button. <a href=\"%1$s\" target=\"_blank\">%2$sPlease review us</a>."
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:298
+msgid "The free audit is an initial, non-invasive assessment—not a penetration test, formal security certification, or guarantee of SEO rankings."
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:276
+msgid "This is not a generic automated score. We look for visible problems, friction, and realistic opportunities across your WordPress and WooCommerce site."
+msgstr ""
+
+#: admin/html/main-page.php:106
+msgid "To increase Sale"
+msgstr ""
+
+#: admin/premium-placeholder.php:34
+msgid "Unlock powerful features to enhance your quantity buttons!"
+msgstr ""
+
+#: admin/page-loader.php:86
+msgid "Unlock premium quantity controls and cart features at a special limited-time price."
+msgstr ""
+
+#: admin/class-codeastrology-sale-notice.php:105
+msgid "UP TO 80% OFF"
+msgstr ""
+
+#: admin/premium-placeholder.php:85
+msgid "Upgrade to Premium"
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:311
+msgid "Use this option only after your project scope and quotation have been confirmed with our team."
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:235
+msgid "Use this payment option only after your project scope and quotation have been confirmed with our team. Enter the agreed amount and include your project title or reference on the payment form."
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:291
+msgid "Useful findings without a complicated process"
+msgstr ""
+
+#: admin/class-codeastrology-sale-notice.php:50
+msgid "View Offer"
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:414
+msgid "Want to know what may be holding your website back?"
+msgstr ""
+
+#: includes/admin-menu.php:14
+msgid "WC Quantity Plus Minus"
+msgstr ""
+
+#: admin/page-loader.php:104
+msgid "We audit speed, plugins, SEO visibility, checkout, basic security signals, and the quantity experience from product page to cart—then share clear, practical recommendations."
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:295
+msgid "We audit the essentials"
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:221
+msgid "We develop, test, and deliver a solution that fits your store."
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:295
+msgid "We perform a focused, non-invasive audit of the selected store areas and the experience related to this plugin."
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:220
+msgid "We review the scope and provide a clear plan, timeline, and estimate."
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:200
+msgid "WHAT WE CAN BUILD"
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:274
+msgid "WHAT WE REVIEW"
+msgstr ""
+
+#: init.php:275
+msgid "WooCommerce"
+msgstr ""
+
+#: admin/html/custom-css-settings.php:27
+msgid "Write your custom CSS code here. It will be applied to the quantity buttons and input fields."
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:176
+msgid "You do not have permission to access this page."
+msgstr ""
+
+#: admin/class-codeastrology-expert-services.php:296
+msgid "You receive clear findings and practical recommendations, with an optional quotation only if you want our help."
+msgstr ""

@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly.
+}
+?>
 <table class="wqpmb-table universal-setting">
     <thead>
         <tr>
@@ -24,10 +29,10 @@
                     </div>
                     <div class="form-field col-lg-6">
                         <?php
-                        $checkbox = isset( $our_data['on_off'] ) ? 'checked' : '';
+                        $wqpmb_checkbox = isset( $wqpmb_our_data['on_off'] ) ? 'checked' : '';
                         ?>
                         <label class="switch">
-                            <input  name="on_off" type="checkbox" id="wqpmb-enable-quantity-button" <?php echo esc_attr( $checkbox ); ?>>
+                            <input  name="on_off" type="checkbox" id="wqpmb-enable-quantity-button" <?php echo esc_attr( $wqpmb_checkbox ); ?>>
                             <div class="slider round"><!--ADDED HTML -->
                                 <span class="on">ON</span><span class="off">OFF</span><!--END-->
                             </div>
@@ -51,10 +56,10 @@
                     </div>
                     <div class="form-field col-lg-6">
                     <?php
-                    $checkbox = isset( $our_data['quantiy_box_archive'] ) ? 'checked' : '';
+                    $wqpmb_checkbox = isset( $wqpmb_our_data['quantiy_box_archive'] ) ? 'checked' : '';
                     ?>
                     <label class="switch">
-                        <input  name="quantiy_box_archive" type="checkbox" id="wqpmb-enable-quantity-archive" <?php echo esc_attr( $checkbox ); ?>>
+                        <input  name="quantiy_box_archive" type="checkbox" id="wqpmb-enable-quantity-archive" <?php echo esc_attr( $wqpmb_checkbox ); ?>>
                         <div class="slider round"><!--ADDED HTML -->
                             <span class="on">ON</span><span class="off">OFF</span><!--END-->
                         </div>
@@ -70,14 +75,14 @@
         </tr>
         <?php 
 
-        do_action( 'wqpmb_checkbox_row', $our_data, $datas );
+        do_action( 'wqpmb_checkbox_row', $wqpmb_our_data, $wqpmb_datas );
 
-        $css_for_row = apply_filters( 'wqpmb_css_row_validation', true, $our_data, $datas );
-        if( $css_for_row ){
+        $wqpmb_css_for_row = apply_filters( 'wqpmb_css_row_validation', true, $wqpmb_our_data, $wqpmb_datas );
+        if( $wqpmb_css_for_row ){
 
-        $css = isset( $our_data['css'] ) && is_array( $our_data['css'] ) ? $our_data['css'] : array();
-        $css_hover = isset( $our_data['css_hover'] ) && is_array( $our_data['css_hover'] ) ? $our_data['css_hover'] : array();
-        $css_input = isset( $our_data['css_input'] ) && is_array( $our_data['css_input'] ) ? $our_data['css_input'] : array();
+        $wqpmb_css = isset( $wqpmb_our_data['css'] ) && is_array( $wqpmb_our_data['css'] ) ? $wqpmb_our_data['css'] : array();
+        $wqpmb_css_hover = isset( $wqpmb_our_data['css_hover'] ) && is_array( $wqpmb_our_data['css_hover'] ) ? $wqpmb_our_data['css_hover'] : array();
+        $wqpmb_css_input = isset( $wqpmb_our_data['css_input'] ) && is_array( $wqpmb_our_data['css_input'] ) ? $wqpmb_our_data['css_input'] : array();
         ?>
 
 
@@ -107,7 +112,7 @@
                     </div>
                     <div class="form-field col-lg-6">
                         <input type="text" id="wqpmb-btn-bg-color" name="css[background-color]" 
-                            value="<?php echo esc_attr( $css['background-color'] ?? '' ); ?>" 
+                            value="<?php echo esc_attr( $wqpmb_css['background-color'] ?? '' ); ?>" 
                             class="ua_color_picker" />
                     </div>
                 </div>
@@ -127,7 +132,7 @@
                     </div>
                     <div class="form-field col-lg-6">
                         <input type="text" id="wqpmb-btn-border-color" name="css[border-color]" 
-                            value="<?php echo esc_attr( $css['border-color'] ?? '' ); ?>" 
+                            value="<?php echo esc_attr( $wqpmb_css['border-color'] ?? '' ); ?>" 
                             class="ua_color_picker" />
                     </div>
                 </div>
@@ -146,7 +151,7 @@
                     </div>
                     <div class="form-field col-lg-6">
                         <input type="text" id="wqpmb-btn-font-color" name="css[color]" 
-                            value="<?php echo esc_attr( $css['color'] ?? '' ); ?>" 
+                            value="<?php echo esc_attr( $wqpmb_css['color'] ?? '' ); ?>" 
                             class="ua_color_picker" />
                     </div>
                 </div>
@@ -187,7 +192,7 @@
                     </div>
                     <div class="form-field col-lg-6">
                         <input type="text" id="wqpmb-btn-bg-color-hover" name="css_hover[background-color]" 
-                            value="<?php echo esc_attr( $css_hover['background-color'] ?? '' ); ?>" 
+                            value="<?php echo esc_attr( $wqpmb_css_hover['background-color'] ?? '' ); ?>" 
                             class="ua_color_picker" />
                     </div>
                 </div>
@@ -206,7 +211,7 @@
                         <label for="wqpmb-btn-border-colorcss_hover">Border</label>
                     </div>
                         <input type="text" id="wqpmb-btn-border-colorcss_hover" name="css_hover[border-color]" 
-                            value="<?php echo esc_attr( $css_hover['border-color'] ?? '' ); ?>" 
+                            value="<?php echo esc_attr( $wqpmb_css_hover['border-color'] ?? '' ); ?>" 
                             class="ua_color_picker" />
                     </div>
                 </div>
@@ -225,7 +230,7 @@
                     </div>
                     <div class="form-field col-lg-6">
                         <input type="text" id="wqpmb-btn-font-colorcss_hover" name="css_hover[color]" 
-                            value="<?php echo esc_attr( $css_hover['color'] ?? '' ); ?>" 
+                            value="<?php echo esc_attr( $wqpmb_css_hover['color'] ?? '' ); ?>" 
                             class="ua_color_picker" />
                     </div>
                 </div>
@@ -266,7 +271,7 @@
                     </div>
                     <div class="form-field col-lg-6">
                         <input type="text" id="wqpmn-border-width" name="css[border-width]" 
-                            value="<?php echo esc_attr( $css['border-width'] ?? '' ); ?>" 
+                            value="<?php echo esc_attr( $wqpmb_css['border-width'] ?? '' ); ?>" 
                             placeholder="eg: 1px"
                             class="ua_input" />
                     </div>
@@ -287,7 +292,7 @@
                     </div>
                     <div class="form-field col-lg-6">
                         <input type="text" id="wqpmn-border-radius" name="css[border-radius]" 
-                            value="<?php echo esc_attr( $css['border-radius'] ?? '' ); ?>" 
+                            value="<?php echo esc_attr( $wqpmb_css['border-radius'] ?? '' ); ?>" 
                             placeholder="eg: 4px"
                             class="ua_input" />
                     </div>
@@ -310,7 +315,7 @@
 
         
         <?php 
-        } //end of $css_for_row
+        } //end of $wqpmb_css_for_row
 
         /**
          * @Hook Action: wqpmb_css_row

@@ -21,7 +21,7 @@ $no_dismiss = $no_dismiss ?? false;
 <div class="ca-fw-offer ca-fw-offer-flash" id="ca-fw-offer-<?php echo esc_attr( $offer['id'] ); ?>" data-dismiss-id="<?php echo esc_attr( $offer['id'] ); ?>">
     <div class="ca-fw-offer-inner">
         <?php if ( ! $no_dismiss ) : ?>
-            <button class="ca-fw-dismiss ca-fw-offer-close" data-dismiss-id="<?php echo esc_attr( $offer['id'] ); ?>" data-dismiss-type="<?php echo esc_attr( $offer['dismiss_type'] ); ?>" data-reshow-after="<?php echo esc_attr( $offer['reshow_after'] ); ?>" data-reshow-unit="<?php echo esc_attr( $offer['reshow_unit'] ); ?>" title="<?php esc_attr_e( 'Dismiss', 'flavor-jelee' ); ?>">
+            <button class="ca-fw-dismiss ca-fw-offer-close" data-dismiss-id="<?php echo esc_attr( $offer['id'] ); ?>" data-dismiss-type="<?php echo esc_attr( $offer['dismiss_type'] ); ?>" data-reshow-after="<?php echo esc_attr( $offer['reshow_after'] ); ?>" data-reshow-unit="<?php echo esc_attr( $offer['reshow_unit'] ); ?>" title="<?php esc_attr_e( 'Dismiss', 'wc-quantity-plus-minus-button' ); ?>">
                 <span class="dashicons dashicons-no-alt"></span>
             </button>
         <?php endif; ?>
@@ -49,9 +49,9 @@ $no_dismiss = $no_dismiss ?? false;
                 <p class="ca-fw-offer-desc"><?php echo wp_kses_post( $offer['description'] ); ?></p>
             <?php endif; ?>
 
-            <?php echo CA_Framework_Render_Elements::render_countdown( $offer ); ?>
+            <?php echo CA_Framework_Render_Elements::render_countdown( $offer ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- markup is built and escaped inside the renderer. ?>
 
-            <?php echo CA_Framework_Render_Elements::render_buttons( $offer['buttons'], $offer['target_plugin'] ); ?>
+            <?php echo CA_Framework_Render_Elements::render_buttons( $offer['buttons'], $offer['target_plugin'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- markup is built and escaped inside the renderer. ?>
         </div>
     </div>
 </div>

@@ -40,13 +40,14 @@ if ( ! class_exists( __NAMESPACE__ . '\\Sale_Notice' ) ) {
 					'plugin_name'  => '',
 					'capability'   => 'manage_options',
 					'screen_tokens' => array(),
+					'exclude_pages' => array(),
 					'purchase_url'  => 'https://codeastrology.com/downloads/category/premium/',
 					'all_plugins_url' => 'https://codeastrology.com/downloads/category/premium/',
 					'has_premium'  => false,
 					'is_premium'   => false,
-					'headline'     => __( 'CodeAstrology Super Sale', 'woo-product-table' ),
-					'description'  => __( 'Save up to 80% on selected premium WordPress and WooCommerce plugins for a limited time.', 'woo-product-table' ),
-					'button_text'  => __( 'View Offer', 'woo-product-table' ),
+					'headline'     => __( 'CodeAstrology Super Sale', 'wc-quantity-plus-minus-button' ),
+					'description'  => __( 'Save up to 80% on selected premium WordPress and WooCommerce plugins for a limited time.', 'wc-quantity-plus-minus-button' ),
+					'button_text'  => __( 'View Offer', 'wc-quantity-plus-minus-button' ),
 				)
 			);
 
@@ -57,6 +58,7 @@ if ( ! class_exists( __NAMESPACE__ . '\\Sale_Notice' ) ) {
 
 			$context['key'] = $key;
 			$context['screen_tokens'] = array_filter( array_map( 'sanitize_key', (array) $context['screen_tokens'] ) );
+			$context['exclude_pages'] = array_filter( array_map( 'sanitize_key', (array) $context['exclude_pages'] ) );
 			self::$contexts[ $key ] = $context;
 
 			if ( self::$booted ) {
@@ -98,9 +100,9 @@ if ( ! class_exists( __NAMESPACE__ . '\\Sale_Notice' ) ) {
 				$context['all_plugins_url']
 			);
 			?>
-			<div class="notice is-dismissible codeastrology-sale-notice" role="region" aria-label="<?php esc_attr_e( 'CodeAstrology special offer', 'woo-product-table' ); ?>">
+			<div class="notice is-dismissible codeastrology-sale-notice" role="region" aria-label="<?php esc_attr_e( 'CodeAstrology special offer', 'wc-quantity-plus-minus-button' ); ?>">
 				<div class="codeastrology-sale-notice__content">
-					<span class="codeastrology-sale-notice__badge"><?php esc_html_e( 'UP TO 80% OFF', 'woo-product-table' ); ?></span>
+					<span class="codeastrology-sale-notice__badge"><?php esc_html_e( 'UP TO 80% OFF', 'wc-quantity-plus-minus-button' ); ?></span>
 					<div class="codeastrology-sale-notice__copy">
 						<strong><?php echo esc_html( $context['headline'] ); ?></strong>
 						<span><?php echo esc_html( $context['description'] ); ?></span>
@@ -111,7 +113,7 @@ if ( ! class_exists( __NAMESPACE__ . '\\Sale_Notice' ) ) {
 						</a>
 						<?php if ( ! empty( $context['has_premium'] ) ) : ?>
 							<a class="button codeastrology-sale-notice__button" href="<?php echo esc_url( $all_plugins_url ); ?>" target="_blank" rel="noopener noreferrer">
-								<?php esc_html_e( 'All Plugins', 'woo-product-table' ); ?>
+								<?php esc_html_e( 'All Plugins', 'wc-quantity-plus-minus-button' ); ?>
 							</a>
 						<?php endif; ?>
 					</div>
@@ -204,7 +206,7 @@ if ( ! class_exists( __NAMESPACE__ . '\\Sale_Notice' ) ) {
 			check_ajax_referer( self::NONCE_ACTION, 'nonce' );
 
 			if ( ! current_user_can( 'read' ) ) {
-				wp_send_json_error( array( 'message' => __( 'Permission denied.', 'woo-product-table' ) ), 403 );
+				wp_send_json_error( array( 'message' => __( 'Permission denied.', 'wc-quantity-plus-minus-button' ) ), 403 );
 			}
 
 			update_user_meta( get_current_user_id(), self::DISMISS_META, time() );
@@ -235,9 +237,14 @@ if ( ! class_exists( __NAMESPACE__ . '\\Sale_Notice' ) ) {
 				return null;
 			}
 
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only screen check, nothing is written.
 			$page = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : '';
 			foreach ( self::$contexts as $context ) {
 				if ( ! self::is_context_available( $context ) ) {
+					continue;
+				}
+
+				if ( $page && in_array( $page, $context['exclude_pages'], true ) ) {
 					continue;
 				}
 

@@ -109,22 +109,22 @@ if ( ! class_exists( 'CA_Framework_Render_Elements' ) ) {
             return '<div class="ca-fw-countdown" data-end-date="' . esc_attr( $end_iso ) . '">
                 <div class="ca-fw-countdown-item">
                     <span class="ca-fw-countdown-number" data-days>00</span>
-                    <span class="ca-fw-countdown-label">' . esc_html__( 'Days', 'flavor-jelee' ) . '</span>
+                    <span class="ca-fw-countdown-label">' . esc_html__( 'Days', 'wc-quantity-plus-minus-button' ) . '</span>
                 </div>
                 <div class="ca-fw-countdown-sep">:</div>
                 <div class="ca-fw-countdown-item">
                     <span class="ca-fw-countdown-number" data-hours>00</span>
-                    <span class="ca-fw-countdown-label">' . esc_html__( 'Hours', 'flavor-jelee' ) . '</span>
+                    <span class="ca-fw-countdown-label">' . esc_html__( 'Hours', 'wc-quantity-plus-minus-button' ) . '</span>
                 </div>
                 <div class="ca-fw-countdown-sep">:</div>
                 <div class="ca-fw-countdown-item">
                     <span class="ca-fw-countdown-number" data-minutes>00</span>
-                    <span class="ca-fw-countdown-label">' . esc_html__( 'Min', 'flavor-jelee' ) . '</span>
+                    <span class="ca-fw-countdown-label">' . esc_html__( 'Min', 'wc-quantity-plus-minus-button' ) . '</span>
                 </div>
                 <div class="ca-fw-countdown-sep">:</div>
                 <div class="ca-fw-countdown-item">
                     <span class="ca-fw-countdown-number" data-seconds>00</span>
-                    <span class="ca-fw-countdown-label">' . esc_html__( 'Sec', 'flavor-jelee' ) . '</span>
+                    <span class="ca-fw-countdown-label">' . esc_html__( 'Sec', 'wc-quantity-plus-minus-button' ) . '</span>
                 </div>
             </div>';
         }

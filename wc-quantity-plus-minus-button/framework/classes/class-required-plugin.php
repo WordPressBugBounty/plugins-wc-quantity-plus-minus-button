@@ -201,12 +201,12 @@ if ( ! class_exists( 'CA_Framework_Required_Plugin' ) ) {
                                 <?php if ( 'not_installed' === $plugin['status'] ) : ?>
                                     <button class="ca-fw-btn ca-fw-btn-install ca-fw-btn-primary" data-action="install" data-slug="<?php echo esc_attr( $plugin['slug'] ); ?>">
                                         <span class="dashicons dashicons-download"></span>
-                                        <?php esc_html_e( 'Install', 'flavor-jelee' ); ?>
+                                        <?php esc_html_e( 'Install', 'wc-quantity-plus-minus-button' ); ?>
                                     </button>
                                 <?php elseif ( 'installed' === $plugin['status'] ) : ?>
                                     <button class="ca-fw-btn ca-fw-btn-activate ca-fw-btn-success" data-action="activate" data-path="<?php echo esc_attr( $plugin['path'] ); ?>">
                                         <span class="dashicons dashicons-yes"></span>
-                                        <?php esc_html_e( 'Activate', 'flavor-jelee' ); ?>
+                                        <?php esc_html_e( 'Activate', 'wc-quantity-plus-minus-button' ); ?>
                                     </button>
                                 <?php endif; ?>
                             </div>

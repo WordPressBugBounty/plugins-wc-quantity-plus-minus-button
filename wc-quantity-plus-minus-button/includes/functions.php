@@ -1,27 +1,6 @@
 <?php
-
-/**
- * Only for developer
- * @author Fazle Bari <fazlebarisn@gmail.com>
- */
-if( ! function_exists('dd') ){
-	function dd(...$vals) {
-        $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1)[0];
-        $file = $backtrace['file'] ?? 'Unknown file';
-        $line = $backtrace['line'] ?? 'Unknown line';
-        echo '<div style="background: #e1e1e1;border-left: 3px solid #888;padding: 15px;margin: 15px 0;font-family: monospace;border-radius: 6px;overflow-x: auto;">';
-        echo '<div style="margin-bottom: 10px;color: #3F51B5;">';
-        echo "🛠️ <strong>File:</strong> <span style='color:#8d8d8d;'>$file</span> on line <span style='color:#4b4b4b;'>$line</span>";
-        echo '</div>';
-        foreach ($vals as $val) {
-            ob_start();
-            var_dump($val);
-            $output = ob_get_clean();
-            // HTML entities
-            echo '<pre style="color: #777777;background: #ffffff9c;">' . htmlspecialchars($output) . '</pre>';
-        }
-        echo '</div>';
-   }
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly.
 }
 
 
@@ -175,10 +154,330 @@ if( !function_exists( 'wqpmb_admin_body_class' ) ){
 }
 
 
+if( !function_exists( 'wqpmb_css_property_rules' ) ){
+    /**
+     * Validation rule for every CSS property the settings form may set.
+     *
+     * `color` -> hex / rgb() / rgba() / a plain colour keyword.
+     * `size`  -> up to four numeric tokens, each with an optional CSS unit.
+     *
+     * @since 2.1.1
+     *
+     * @return array<string, string> Property name => rule name.
+     */
+    function wqpmb_css_property_rules(){
+        $rules = array(
+            'background-color' => 'color',
+            'border-color'     => 'color',
+            'color'            => 'color',
+            'border-width'     => 'size',
+            'border-radius'    => 'size',
+            'width'            => 'size',
+            'height'           => 'size',
+        );
+
+        /**
+         * @Hook Filter: wqpmb_css_property_rules
+         * Register validation rules for CSS properties added by add-ons.
+         *
+         * @param array $rules Property name => rule name ( color|size ).
+         */
+        return apply_filters( 'wqpmb_css_property_rules', $rules );
+    }
+}
+
+if( !function_exists( 'wqpmb_sanitize_css_size' ) ){
+    /**
+     * Validate a CSS length such as "3px", "0", "50%", or "4px 4px 0 0".
+     *
+     * @since 2.1.1
+     *
+     * @param string $value Raw value.
+     * @return string Valid CSS length, or an empty string.
+     */
+    function wqpmb_sanitize_css_size( $value ){
+        $value = trim( preg_replace( '/\s+/', ' ', (string) $value ) );
+
+        if( '' === $value ){
+            return '';
+        }
+
+        if( in_array( strtolower( $value ), array( 'auto', 'inherit', 'initial', 'unset' ), true ) ){
+            return strtolower( $value );
+        }
+
+        // Shorthand properties (border-radius) accept up to four tokens.
+        $tokens = explode( ' ', $value );
+        if( count( $tokens ) > 4 ){
+            return '';
+        }
+
+        foreach( $tokens as $token ){
+            if( ! preg_match( '/^-?\d+(\.\d+)?(px|em|rem|%|vh|vw|pt|ex|ch)?$/i', $token ) ){
+                return '';
+            }
+        }
+
+        return implode( ' ', $tokens );
+    }
+}
+
+if( !function_exists( 'wqpmb_sanitize_css_color' ) ){
+    /**
+     * Validate a CSS colour: hex, rgb(), rgba() or a bare keyword.
+     *
+     * @since 2.1.1
+     *
+     * @param string $value Raw value.
+     * @return string Valid CSS colour, or an empty string.
+     */
+    function wqpmb_sanitize_css_color( $value ){
+        $value = trim( (string) $value );
+
+        if( '' === $value ){
+            return '';
+        }
+
+        // #fff / #ffffff - handled by core.
+        $hex = sanitize_hex_color( $value );
+        if( ! empty( $hex ) ){
+            return $hex;
+        }
+
+        // rgb( 0, 0, 0 ) / rgba( 0, 0, 0, 0.5 )
+        $rgb = '/^rgba?\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}\s*(?:,\s*(?:0|1|0?\.\d+)\s*)?\)$/i';
+        if( preg_match( $rgb, $value ) ){
+            return preg_replace( '/\s+/', ' ', $value );
+        }
+
+        // Keywords such as "transparent", "red", "currentColor".
+        if( preg_match( '/^[a-z]{3,20}$/i', $value ) ){
+            return $value;
+        }
+
+        return '';
+    }
+}
+
+if( !function_exists( 'wqpmb_sanitize_css_value' ) ){
+    /**
+     * Sanitize one CSS declaration value according to its property rule.
+     *
+     * Unknown properties are rejected outright, so nothing that has not been
+     * explicitly whitelisted can ever reach the stylesheet.
+     *
+     * @since 2.1.1
+     *
+     * @param string $property CSS property name (already whitelisted).
+     * @param string $value    Raw value from the request.
+     * @return string Safe value, or an empty string.
+     */
+    function wqpmb_sanitize_css_value( $property, $value ){
+        $rules = wqpmb_css_property_rules();
+        $rule  = isset( $rules[ $property ] ) ? $rules[ $property ] : '';
+
+        switch( $rule ){
+            case 'color':
+                $value = wqpmb_sanitize_css_color( $value );
+                break;
+
+            case 'size':
+                $value = wqpmb_sanitize_css_size( $value );
+                break;
+
+            default:
+                $value = '';
+                break;
+        }
+
+        /**
+         * @Hook Filter: wqpmb_sanitized_css_value
+         *
+         * @param string $value    Sanitized value.
+         * @param string $property Property name.
+         */
+        return apply_filters( 'wqpmb_sanitized_css_value', $value, $property );
+    }
+}
+
+if( !function_exists( 'wqpmb_sanitize_css_block' ) ){
+    /**
+     * Last line of defence before CSS is printed.
+     *
+     * Removes anything that could terminate the surrounding <style> element.
+     * This also repairs installs that stored a malicious value with an older
+     * version of the plugin, because the option is cleaned on output.
+     *
+     * @since 2.1.1
+     *
+     * @param string $css Raw CSS.
+     * @return string CSS that cannot break out of a <style> block.
+     */
+    function wqpmb_sanitize_css_block( $css ){
+        if( ! is_string( $css ) || '' === $css ){
+            return '';
+        }
+
+        $css = wp_strip_all_tags( $css );
+
+        // wp_strip_all_tags() leaves stray angle brackets behind; drop them.
+        $css = str_replace( array( '<', '>' ), '', $css );
+
+        return $css;
+    }
+}
+
+if( !function_exists( 'wqpmb_allowed_setting_fields' ) ){
+    /**
+     * Map of every field our settings form is allowed to submit.
+     *
+     * Anything that is not described here is dropped before it ever reaches
+     * the save handler, so an attacker cannot smuggle extra keys (or extra
+     * CSS properties) into the options table.
+     *
+     * Add-ons that render their own fields inside our form must register
+     * them through the `wqpmb_allowed_setting_fields` filter, otherwise
+     * their values will be discarded.
+     *
+     * @since 2.1.1
+     *
+     * @return array{checkbox: string[], textarea: string[], css_groups: array<string, string[]>}
+     */
+    function wqpmb_allowed_setting_fields(){
+        $fields = array(
+
+            // Checkboxes: present in POST means "on", absent means "off".
+            'checkbox'   => array(
+                'on_off',
+                'quantiy_box_archive',
+            ),
+
+            // Free text areas.
+            'textarea'   => array(
+                'custom_css',
+            ),
+
+            /**
+             * CSS groups.
+             *
+             * Key   = the POST array name.
+             * Value = the CSS property names that group may contain.
+             */
+            'css_groups' => array(
+                'css'       => array(
+                    'background-color',
+                    'border-color',
+                    'color',
+                    'border-width',
+                    'border-radius',
+                ),
+                'css_hover' => array(
+                    'background-color',
+                    'border-color',
+                    'color',
+                ),
+                'css_input' => array(
+                    'width',
+                    'height',
+                    'background-color',
+                    'border-color',
+                    'color',
+                ),
+            ),
+        );
+
+        /**
+         * @Hook Filter: wqpmb_allowed_setting_fields
+         * Register additional settings fields (e.g. from the premium add-on).
+         *
+         * @param array $fields Allowed field map.
+         */
+        return apply_filters( 'wqpmb_allowed_setting_fields', $fields );
+    }
+}
+
+if( !function_exists( 'wqpmb_get_posted_settings' ) ){
+    /**
+     * Read the settings form submission.
+     *
+     * Replaces the previous `filter_input_array( INPUT_POST )` call, which
+     * handed the entire unfiltered request body to the save handler.
+     *
+     * Only fields declared in wqpmb_allowed_setting_fields() are returned,
+     * every value is unslashed and sanitized, and control fields such as
+     * `nonce` / `configure_submit` are deliberately left out so they never
+     * end up inside the stored option.
+     *
+     * @since 2.1.1
+     *
+     * @return array Sanitized settings, or an empty array when nothing was posted.
+     */
+    function wqpmb_get_posted_settings(){
+
+        // Nonce is verified in wqpmb_form_submit() before anything is saved.
+        // phpcs:disable WordPress.Security.NonceVerification.Missing
+        if( empty( $_POST ) ){
+            return array();
+        }
+
+        $fields = wqpmb_allowed_setting_fields();
+        $datas  = array();
+
+        // Checkboxes - keep the original "isset() means enabled" behaviour.
+        $checkboxes = isset( $fields['checkbox'] ) && is_array( $fields['checkbox'] ) ? $fields['checkbox'] : array();
+        foreach( $checkboxes as $field ){
+            if( isset( $_POST[ $field ] ) ){
+                $datas[ $field ] = sanitize_text_field( wp_unslash( $_POST[ $field ] ) );
+            }
+        }
+
+        // Textareas.
+        $textareas = isset( $fields['textarea'] ) && is_array( $fields['textarea'] ) ? $fields['textarea'] : array();
+        foreach( $textareas as $field ){
+            if( isset( $_POST[ $field ] ) && ! is_array( $_POST[ $field ] ) ){
+                $datas[ $field ] = wqpmb_sanitize_css_block(
+                    sanitize_textarea_field( wp_unslash( $_POST[ $field ] ) )
+                );
+            }
+        }
+
+        // CSS groups - only known groups, and inside them only known properties.
+        $css_groups = isset( $fields['css_groups'] ) && is_array( $fields['css_groups'] ) ? $fields['css_groups'] : array();
+        foreach( $css_groups as $group => $properties ){
+
+            if( ! isset( $_POST[ $group ] ) || ! is_array( $_POST[ $group ] ) || ! is_array( $properties ) ){
+                continue;
+            }
+
+            // Each member is sanitized individually a few lines below.
+            $posted_group = wp_unslash( $_POST[ $group ] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+            $clean_group  = array();
+
+            foreach( $properties as $property ){
+
+                if( ! isset( $posted_group[ $property ] ) || is_array( $posted_group[ $property ] ) ){
+                    continue;
+                }
+
+                $clean_group[ $property ] = wqpmb_sanitize_css_value(
+                    $property,
+                    sanitize_text_field( $posted_group[ $property ] )
+                );
+            }
+
+            $datas[ $group ] = $clean_group;
+        }
+        // phpcs:enable WordPress.Security.NonceVerification.Missing
+
+        return $datas;
+    }
+}
+
+
 if( !function_exists( 'wqpmb_submit_form' ) ){
     /**
      * Form Submit based on Action Hook
-     * 
+     *
      * @param type $classes
      * @return Void
      */
@@ -195,7 +494,20 @@ if( !function_exists( 'wqpmb_submit_form' ) ){
 
         // verify this came from the our screen and with proper authorization,
         // because save_post can be triggered at other times
-        if( ! wp_verify_nonce( $_POST['nonce'], plugin_basename( WQPMB_BASE_DIR ) ) ) {
+        $nonce = sanitize_text_field( wp_unslash( $_POST['nonce'] ) );
+        if( ! wp_verify_nonce( $nonce, plugin_basename( WQPMB_BASE_DIR ) ) ) {
+            return;
+        }
+
+        /**
+         * A nonce only proves the request came from our form - it says nothing
+         * about who sent it. Re-check the capability here so the handler is
+         * safe even if it is ever reached from outside the settings screen.
+         *
+         * @since 2.1.1
+         */
+        $capability = apply_filters( 'wqpmb_menu_capability', 'manage_woocommerce' );
+        if( ! current_user_can( $capability ) ){
             return;
         }
 
@@ -283,29 +595,47 @@ if( !function_exists( 'wqpmb_header_css' ) ){
      * @return void
      */
     function wqpmb_header_css(){
-        $style = false;
+
+        $style = '';
+
         $css_key = WQPMB_Button::$option['css'];
-        $css = get_option( $css_key );
+        $css     = get_option( $css_key );
         if( !empty( $css ) && is_string( $css ) ){
-            $style .= "<style type='text/css' id='wqpmb_internal_css'>";
-            $style .= $css;
-            $style .= "</style>";
+            // Sanitized on output as well, so options saved by an older
+            // version of the plugin can never break out of the stylesheet.
+            $style .= wqpmb_sanitize_css_block( $css );
         }
-        
+
         // Add custom CSS
         $option_key = WQPMB_Button::$option['option'];
-        $options = get_option( $option_key );
+        $options    = get_option( $option_key );
         $custom_css = isset( $options['custom_css'] ) ? $options['custom_css'] : '';
-        
-        if( !empty( $custom_css ) ){
-            $style .= "<style type='text/css' id='wqpmb_custom_css'>";
-            $style .= wp_strip_all_tags( $custom_css );
-            $style .= "</style>";
+
+        if( !empty( $custom_css ) && is_string( $custom_css ) ){
+            $style .= "\n" . wqpmb_sanitize_css_block( $custom_css );
         }
-        
-        echo $style;
+
+        $style = trim( $style );
+
+        if( '' === $style ){
+            return;
+        }
+
+        /**
+         * Printed through the stylesheet we already enqueue, instead of a
+         * hand built <style> tag, so WordPress handles the escaping.
+         */
+        if( wp_style_is( 'wqpmb-style', 'enqueued' ) || wp_style_is( 'wqpmb-style', 'registered' ) ){
+            wp_add_inline_style( 'wqpmb-style', $style );
+            return;
+        }
+
+        // Fallback when the stylesheet was dequeued by the theme.
+        wp_register_style( 'wqpmb-inline-style', false, array(), WQPMB_VERSION );
+        wp_enqueue_style( 'wqpmb-inline-style' );
+        wp_add_inline_style( 'wqpmb-inline-style', $style );
     }
-    add_filter( 'wp_head', 'wqpmb_header_css' );
+    add_action( 'wp_enqueue_scripts', 'wqpmb_header_css', 100 );
 }
 
 
@@ -321,7 +651,7 @@ if( ! function_exists('wqpmb_doc_link') ){
 * start the customisation
 */
 // add_action('woocommerce_before_shop_loop', function() {
-//     add_filter('woocommerce_loop_add_to_cart_link', 'wpse_125946_add_to_cart', 10, 3);
+//     add_filter('woocommerce_loop_add_to_cart_link', 'wqpmb_loop_add_to_cart', 10, 3);
 // });
 
 /**
@@ -331,9 +661,8 @@ if( ! function_exists('wqpmb_doc_link') ){
 * @param array $link
 * @return string
 */
-function wpse_125946_add_to_cart($button, $product, $link) {
+function wqpmb_loop_add_to_cart($button, $product, $link) {
     $product_type = $product->get_type();
-    var_dump(get_option('woocommerce_enable_ajax_add_to_cart'));
     // return $button;
     // not for variable, grouped or external products
     if (!in_array($product_type, array('variable', 'grouped', 'external'))) {

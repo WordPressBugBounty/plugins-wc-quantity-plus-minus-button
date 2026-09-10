@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly.
+}
+?>
 <table class="wqpmb-table universal-setting">
     <thead>
         <tr>
@@ -16,12 +21,12 @@
     <tbody>
 
         <?php 
-        $css_for_row = apply_filters( 'wqpmb_css_row_validation', true, $our_data, $datas );
-        if( $css_for_row ){
+        $wqpmb_css_for_row = apply_filters( 'wqpmb_css_row_validation', true, $wqpmb_our_data, $wqpmb_datas );
+        if( $wqpmb_css_for_row ){
 
-        $css = isset( $our_data['css'] ) && is_array( $our_data['css'] ) ? $our_data['css'] : array();
-        $css_hover = isset( $our_data['css_hover'] ) && is_array( $our_data['css_hover'] ) ? $our_data['css_hover'] : array();
-        $css_input = isset( $our_data['css_input'] ) && is_array( $our_data['css_input'] ) ? $our_data['css_input'] : array();
+        $wqpmb_css = isset( $wqpmb_our_data['css'] ) && is_array( $wqpmb_our_data['css'] ) ? $wqpmb_our_data['css'] : array();
+        $wqpmb_css_hover = isset( $wqpmb_our_data['css_hover'] ) && is_array( $wqpmb_our_data['css_hover'] ) ? $wqpmb_our_data['css_hover'] : array();
+        $wqpmb_css_input = isset( $wqpmb_our_data['css_input'] ) && is_array( $wqpmb_our_data['css_input'] ) ? $wqpmb_our_data['css_input'] : array();
         ?>
          
          <!-- Input box width. Added at version 1.1.9 -->
@@ -33,7 +38,7 @@
                     </div>
                     <div class="form-field col-lg-6">
                         <input type="text" id="wqpmn-inputbox-width" name="css_input[width]" 
-                            value="<?php echo esc_attr( $css_input['width'] ?? '' ); ?>" 
+                            value="<?php echo esc_attr( $wqpmb_css_input['width'] ?? '' ); ?>" 
                             placeholder="eg: 100px"
                             class="ua_input" />
                     </div>
@@ -54,7 +59,7 @@
                     </div>
                     <div class="form-field col-lg-6">
                         <input type="text" id="wqpmn-inputbox-height" name="css_input[height]" 
-                            value="<?php echo esc_attr( $css_input['height'] ?? '' ); ?>" 
+                            value="<?php echo esc_attr( $wqpmb_css_input['height'] ?? '' ); ?>" 
                             placeholder="eg: 41px"
                             class="ua_input" />
                     </div>
@@ -74,7 +79,7 @@
                     </div>
                     <div class="form-field col-lg-6">
                         <input type="text" id="wqpmb-input-bg-color-input" name="css_input[background-color]" 
-                            value="<?php echo esc_attr( $css_input['background-color'] ?? '' ); ?>" 
+                            value="<?php echo esc_attr( $wqpmb_css_input['background-color'] ?? '' ); ?>" 
                             class="ua_color_picker" />
                     </div>
                 </div>
@@ -94,7 +99,7 @@
                     </div>
                     <div class="form-field col-lg-6">
                         <input type="text" id="wqpmb-input-border-color-input" name="css_input[border-color]" 
-                            value="<?php echo esc_attr( $css_input['border-color'] ?? '' ); ?>" 
+                            value="<?php echo esc_attr( $wqpmb_css_input['border-color'] ?? '' ); ?>" 
                             class="ua_color_picker" />
                     </div>
                 </div>
@@ -113,7 +118,7 @@
                     </div>
                     <div class="form-field col-lg-6">
                         <input type="text" id="wqpmb-input-font-color-input" name="css_input[color]" 
-                            value="<?php echo esc_attr( $css_input['color'] ?? '' ); ?>" 
+                            value="<?php echo esc_attr( $wqpmb_css_input['color'] ?? '' ); ?>" 
                             class="ua_color_picker" />
                     </div>
                 </div>
@@ -127,7 +132,7 @@
 
 
         <?php 
-        } //end of $css_for_row
+        } //end of $wqpmb_css_for_row
         ?>
     </tbody>
 </table>

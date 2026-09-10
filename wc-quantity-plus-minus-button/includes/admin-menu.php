@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly.
+}
 
 if( !function_exists( 'wqpmb_plugin_actions' ) ){
     /**
@@ -121,10 +124,10 @@ if( !function_exists( 'wqpmb_enable_quantity_button' ) ){
                         <th><label for="wqpmb-enable-quantity-button">Enable Quantity Button</label></th>
                         <td>
                             <?php
-                            $checkbox = isset( $our_data['on_off'] ) ? 'checked' : '';
+                            $wqpmb_checkbox = isset( $our_data['on_off'] ) ? 'checked' : '';
                             ?>
                             <label class="switch">
-                                <input  name="on_off" type="checkbox" id="wqpmb-enable-quantity-button" <?php echo esc_attr( $checkbox ); ?>>
+                                <input  name="on_off" type="checkbox" id="wqpmb-enable-quantity-button" <?php echo esc_attr( $wqpmb_checkbox ); ?>>
                                 <div class="slider round"><!--ADDED HTML -->
                                     <span class="on">ON</span><span class="off">OFF</span><!--END-->
                                 </div>
@@ -268,10 +271,10 @@ if( !function_exists( 'wqpmb_enable_quantity_button' ) ){
                         <th><label for="wqpmb-enable-quantity-archive">Quantity box in Archive</label></th>
                         <td>
                             <?php
-                            $checkbox = isset( $our_data['quantiy_box_archive'] ) ? 'checked' : '';
+                            $wqpmb_checkbox = isset( $our_data['quantiy_box_archive'] ) ? 'checked' : '';
                             ?>
                             <label class="switch">
-                                <input  name="quantiy_box_archive" type="checkbox" id="wqpmb-enable-quantity-archive" <?php echo esc_attr( $checkbox ); ?>>
+                                <input  name="quantiy_box_archive" type="checkbox" id="wqpmb-enable-quantity-archive" <?php echo esc_attr( $wqpmb_checkbox ); ?>>
                                 <div class="slider round"><!--ADDED HTML -->
                                     <span class="on">ON</span><span class="off">OFF</span><!--END-->
                                 </div>

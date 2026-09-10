@@ -68,7 +68,7 @@ class Notice_Framework {
 
     public function show_random_campaigns_offers(){
         
-        $choice = rand( 1, 3 );
+        $choice = wp_rand( 1, 3 );
 
         // 1. Product Table Campaign
         if ( $choice === 1 ) {

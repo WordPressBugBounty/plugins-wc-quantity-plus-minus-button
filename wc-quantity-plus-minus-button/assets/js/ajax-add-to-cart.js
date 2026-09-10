@@ -40,7 +40,6 @@
             };
 
             $(document.body).trigger('adding_to_cart', [$thisbutton, data]);
-            console.log(wc_add_to_cart_params);
             $.ajax({
                 type: 'post',
                 url: wc_add_to_cart_params.ajax_url,
@@ -52,7 +51,6 @@
                     $thisbutton.addClass('added').removeClass('loading');
                 },
                 success: function (response) {
-                    console.log(response);
                     if (response.error && response.product_url) {
                         window.location = response.product_url;
                         return;

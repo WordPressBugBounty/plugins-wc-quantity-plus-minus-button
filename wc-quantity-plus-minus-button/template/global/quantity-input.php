@@ -39,7 +39,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /* translators: %s: Quantity. */
-$label = ! empty( $args['product_name'] ) ? sprintf( esc_html__( '%s quantity', 'woocommerce' ), wp_strip_all_tags( $args['product_name'] ) ) : esc_html__( 'Quantity', 'woocommerce' );
+$wqpmb_label = ! empty( $args['product_name'] ) ? sprintf( esc_html__( '%s quantity', 'wc-quantity-plus-minus-button' ), wp_strip_all_tags( $args['product_name'] ) ) : esc_html__( 'Quantity', 'wc-quantity-plus-minus-button' );
 
 
 if ( isset($max_value) && $min_value === $max_value ) {
@@ -64,9 +64,9 @@ if ( isset($max_value) && $min_value === $max_value ) {
 
 
 	global $product;
-	$product_id =  0;
+	$wqpmb_product_id =  0;
 	if( is_object( $product ) && method_exists( $product,'get_id' ) ){
-		$product_id =  $product->get_id();
+		$wqpmb_product_id =  $product->get_id();
 	}
 
 	
@@ -76,13 +76,13 @@ if ( isset($max_value) && $min_value === $max_value ) {
 	 * use following Filter Hook.
 	 * @return bool Need True false Validation
 	 */
-	$plus_minus = apply_filters( 'wqpmb_show_plus_minus', true, $product_id );
+	$wqpmb_plus_minus = apply_filters( 'wqpmb_show_plus_minus', true, $wqpmb_product_id );
 	
 	?>
-	<div class="qib-button-wrapper qib-button-wrapper-<?php echo esc_attr( $product_id ); ?>">
+	<div class="qib-button-wrapper qib-button-wrapper-<?php echo esc_attr( $wqpmb_product_id ); ?>">
 	
-		<label class="screen-reader-text" for="<?php echo esc_attr( $input_id ); ?>"><?php echo esc_attr( $label ); ?></label>
-			<?php if( $plus_minus ){ ?>
+		<label class="screen-reader-text" for="<?php echo esc_attr( $input_id ); ?>"><?php echo esc_attr( $wqpmb_label ); ?></label>
+			<?php if( $wqpmb_plus_minus ){ ?>
             <button type="button" class="minus qib-button">-</button>
 			<?php } ?>
 			<div class="quantity wqpmb_quantity">
@@ -96,11 +96,11 @@ if ( isset($max_value) && $min_value === $max_value ) {
 			?>
 				<input
 					type="<?php echo esc_attr( $type ); ?>"
-					<?php echo $readonly ? 'readonly="readonly"' : ''; ?>
+					<?php echo $readonly ? 'readonly="readonly"' : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static markup, no variable interpolation. ?>
 					id="<?php echo esc_attr( $input_id ); ?>"
 					class="wqpmb_input_text <?php echo esc_attr( join( ' ', (array) $classes ) ); ?>"
 
-					data-product_id="<?php echo esc_attr( $product_id ); ?>"
+					data-product_id="<?php echo esc_attr( $wqpmb_product_id ); ?>"
 					data-variation_id=""
 					min="<?php echo esc_attr( $min_value ); ?>"
 					<?php if ( 0 < $max_value ) : ?>
@@ -108,7 +108,7 @@ if ( isset($max_value) && $min_value === $max_value ) {
 					<?php endif; ?>
 					name="<?php echo esc_attr( $input_name ); ?>"
 					value="<?php echo esc_attr( $input_value ); ?>"
-					aria-label="<?php esc_attr_e( 'Product quantity', 'woocommerce' ); ?>"
+					aria-label="<?php esc_attr_e( 'Product quantity', 'wc-quantity-plus-minus-button' ); ?>"
 					title="<?php echo esc_attr_x( 'Qty', 'Product quantity input tooltip', 'wc-quantity-plus-minus-button' ); ?>"
 					<?php if ( in_array( $type, array( 'text', 'search', 'tel', 'url', 'email', 'password' ), true ) ) : ?>
 						size="4"
@@ -131,7 +131,7 @@ if ( isset($max_value) && $min_value === $max_value ) {
 				
 			</div>
 
-			<?php if( $plus_minus ){ ?>
+			<?php if( $wqpmb_plus_minus ){ ?>
             <button type="button" class="plus qib-button">+</button>
 			<?php } ?>
 	</div>

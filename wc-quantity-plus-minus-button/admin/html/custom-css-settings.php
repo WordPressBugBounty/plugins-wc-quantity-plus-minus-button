@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly.
+}
+?>
 <table class="wqpmb-table universal-setting">
     <thead>
         <tr>
@@ -25,7 +30,7 @@
                         
 
                         <?php
-                        $custom_css = isset( $our_data['custom_css'] ) ? $our_data['custom_css'] : '';
+                        $wqpmb_custom_css = isset( $wqpmb_our_data['custom_css'] ) ? $wqpmb_our_data['custom_css'] : '';
                         ?>
                         <textarea 
                         style="width:100%;height:200px;background:#0d3748;color:#CDDC39;font-family:monospace;padding:20px;border-radius:8px;"
@@ -38,7 +43,7 @@
 .qib-button-wrapper button.qib-button {
     /* Your custom CSS here */
 }"
-                        ><?php echo esc_textarea( $custom_css ); ?></textarea>                       
+                        ><?php echo esc_textarea( $wqpmb_custom_css ); ?></textarea>                       
                     </div>
                 </div>
             </td>

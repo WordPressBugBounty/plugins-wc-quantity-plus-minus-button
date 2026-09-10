@@ -1,12 +1,22 @@
 <?php
-$datas = filter_input_array(INPUT_POST);
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly.
+}
+
+/**
+ * Only the fields declared in wqpmb_allowed_setting_fields() are taken from
+ * the request, and every value is unslashed and sanitized on the way in.
+ *
+ * @since 2.1.1
+ */
+$wqpmb_datas = wqpmb_get_posted_settings();
 /**
  * I have used this Action hook for saving form's data
  * when click on submit button.
  */
-do_action( 'wqpmb_save_data', $datas );
+do_action( 'wqpmb_save_data', $wqpmb_datas );
 $this->data = get_option( $this->option_key);
-$our_data = $this->data;
+$wqpmb_our_data = $this->data;
 
 ?>
 <div class="wrap wqpmb_wrap wqpmb-content">
@@ -14,11 +24,11 @@ $our_data = $this->data;
     <div class="fieldwrap">
 
     <?php
-        $randN = rand(1,2);
-        $recomm = get_option($this->plugin_prefix . '_recomm', 1);
-        $recomm++;
-        update_option($this->plugin_prefix . '_recomm', $recomm);
-        if($recomm <= 30 && $randN == 1){
+        $wqpmb_rand_n = wp_rand( 1, 2 );
+        $wqpmb_recomm = get_option($this->plugin_prefix . '_recomm', 1);
+        $wqpmb_recomm++;
+        update_option($this->plugin_prefix . '_recomm', $wqpmb_recomm);
+        if($wqpmb_recomm <= 30 && $wqpmb_rand_n == 1){
         ?>
         <div id="wqpmb-recomendation-area" class="wqpmb-section-panel">
             <?php 
@@ -29,7 +39,7 @@ $our_data = $this->data;
         <?php } ?>
 
         <form action="" method="POST">
-            <input type="hidden" name="nonce" value="<?php echo wp_create_nonce( plugin_basename( WQPMB_BASE_DIR ) ); ?>">
+            <input type="hidden" name="nonce" value="<?php echo esc_attr( wp_create_nonce( plugin_basename( WQPMB_BASE_DIR ) ) ); ?>">
             <div class="wqpmb-section-panel no-background wqpmb-full-form-submit-wrapper">
                 
                 <button name="configure_submit" type="submit"
@@ -44,7 +54,7 @@ $our_data = $this->data;
             <div class="wqpmb-section-panel button-settings" id="wqpmb-button-settings">
                 <?php
                 include 'button-settings.php'; 
-                do_action( 'wqpmb_form_button_settings_bottom', $our_data, $datas );
+                do_action( 'wqpmb_form_button_settings_bottom', $wqpmb_our_data, $wqpmb_datas );
                 ?>
             </div><!-- /#wqpmb-button-settings -->
 
@@ -52,12 +62,12 @@ $our_data = $this->data;
             <div class="wqpmb-section-panel inputbox-settings" id="wqpmb-inputbox-settings">
                 <?php 
                 include 'inputbox-settings.php';
-                do_action( 'wqpmb_form_inputbox_settings_bottom', $our_data, $datas );
+                do_action( 'wqpmb_form_inputbox_settings_bottom', $wqpmb_our_data, $wqpmb_datas );
                 ?>
             </div><!-- /#wqpmb-button-settings -->
             <?php
             //It's old action hook
-            do_action( 'wqpmb_form_panel', $our_data, $datas );
+            do_action( 'wqpmb_form_panel', $wqpmb_our_data, $wqpmb_datas );
             ?>
             <div class="wqpmb-section-panel custom-css-settings" id="wqpmb-custom-css-settings">
                 <?php 
@@ -68,7 +78,7 @@ $our_data = $this->data;
             
 
             //New action hook for form
-            do_action( 'wqpmb_form_bottom', $our_data, $datas );
+            do_action( 'wqpmb_form_bottom', $wqpmb_our_data, $wqpmb_datas );
             ?>
             <div class="wqpmb-section-panel no-background wqpmb-full-form-submit-wrapper">
                 
@@ -128,7 +138,7 @@ $our_data = $this->data;
 
         <?php
         //It's old action hook
-        do_action( 'wqpmb_bottom_panel', $our_data, $datas );
+        do_action( 'wqpmb_bottom_panel', $wqpmb_our_data, $wqpmb_datas );
         ?>
         
     </div><!-- ./fieldwrap -->
