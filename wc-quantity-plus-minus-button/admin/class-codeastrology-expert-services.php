@@ -57,7 +57,7 @@ if ( ! class_exists( __NAMESPACE__ . '\\Expert_Services' ) ) {
 				'settings_button_text' => __( 'Explore Expert Help', 'wc-quantity-plus-minus-button' ),
 				'contact_email'  => 'contact@codeastrology.com',
 				'gmail_email'    => 'codersaiful@gmail.com',
-				'contact_url'    => 'https://codeastrology.com/contact-us/',
+				'contact_url'    => 'https://forms.gle/EQXNvD6LBh8HqQjy9',
 				'company_url'    => 'https://codeastrology.com/',
 			);
 

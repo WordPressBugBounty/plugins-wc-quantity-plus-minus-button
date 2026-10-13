@@ -118,7 +118,7 @@ class Page_Loader extends Base
             ),
             'contact_email'  => 'contact@codeastrology.com',
             'gmail_email'    => 'codersaiful@gmail.com',
-            'contact_url'    => 'https://codeastrology.com/contact-us/',
+            'contact_url'    => 'https://forms.gle/EQXNvD6LBh8HqQjy9',
         ) );
     }
 

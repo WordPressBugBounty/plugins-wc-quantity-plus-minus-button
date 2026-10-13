@@ -4,7 +4,7 @@ Contributors: codersaiful, bizzplugin, codeastrology, mdibrahimk48, unikforce, f
 Tags: woocommerce quantity, plus minus button, quantity, qty button
 Requires at least: 4.0.0
 Tested up to: 7.1
-Stable tag: 2.1.1
+Stable tag: 2.1.2
 Requires PHP: 5.6
 License: GPL3+
 License URI: http://www.gnu.org/licenses/gpl.html
@@ -14,6 +14,12 @@ Easily add plus, minus button for WooCommerce Quantity Input box in everywhere. 
 == Description ==
 
 *Quantity Plus/Minus Button for WooCommerce* plugin add beautifully designed quantity buttons for WooCommerce quantity input box on the  product page which also support for decimal quantity. Easily add plus, minus button for WooCommerce Quantity Input box in everywhere. Such: Single Page, In Loop Quantity input, Cart page etc with custom design. User able to get custom/own color for his plus or minus button.
+
+= See It in Action =
+
+Watch how Quantity Plus Minus Button works:
+
+https://www.youtube.com/watch?v=zMmxoCHUo-E
 
 **Features**
 
@@ -163,6 +169,10 @@ That's it. So easy, Right !!!
 10. Quantity button in WooCommerce cart page
 
 == Change log ==
+
+= 2.1.2 =
+* Tested with latest WordPress and WooCommerce version and updated.
+* Bug fixes and minor improvements.
 
 = 2.1.1 =
 * Security: fixed a stored Cross-Site Scripting (XSS) issue on the settings screen. Colour and size values are now validated against a strict whitelist before they are saved, and the generated CSS is sanitized again on output.
