@@ -1,9 +1,0 @@
-*.log
-.DS_Store
-node_modules/
-.env
-dist/
-.idea/
-*.tmp
-package-lock.json
-composer.lock
